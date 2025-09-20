@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TAI Research — Building the Future of Intelligence</title>
+  <meta name="description" content="TAI Research — Building the Future of Intelligence. This is where the dream starts." />
+  <style>
+    :root{
+      --bg: #ffffff;
+      --card: #f9f9f9;
+      --text: #000000;
+      --muted: #6e6e80;
+      --accent: #000000;
+      --border: #e5e5e6;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Inter", "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header{
+      padding: 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      border-bottom: 1px solid var(--border);
+    }
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .logo .mark{
+      width: 32px;
+      height: 32px;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .logo .mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    nav a{
+      color:var(--text);
+      text-decoration:none;
+      margin-left:24px;
+      font-weight:500;
+      font-size: 14px;
+    }
+    nav a:hover {
+      color: var(--muted);
+    }
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 20px;
+    }
+    .hero{
+      display:grid;
+      grid-template-columns:1fr 380px;
+      gap:48px;
+      align-items:center;
+      padding: 60px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero h1{
+      font-size:40px;
+      line-height:1.1;
+      margin:0 0 16px;
+      font-weight: 700;
+    }
+    .hero p{
+      color:var(--muted);
+      margin:0 0 24px;
+      font-size: 18px;
+    }
+    .btn{
+      display:inline-block;
+      padding:12px 24px;
+      border-radius:6px;
+      background: var(--accent);
+      color:#fff;
+      font-weight:500;
+      text-decoration:none;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+    .btn:hover {
+      opacity: 0.9;
+    }
+    .btn.outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn.outline:hover {
+      background: #f5f5f5;
+    }
+    .card{
+      background:var(--card);
+      padding:24px;
+      border-radius:8px;
+      border: 1px solid var(--border);
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:24px;
+      margin-top:28px;
+    }
+    section{
+      padding:48px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    h2{
+      margin:0 0 16px;
+      font-size: 28px;
+      font-weight: 600;
+    }
+    h3 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .news-item{
+      display:flex;
+      gap:16px;
+      align-items:flex-start;
+    }
+    footer{
+      padding:32px 0;
+      color:var(--muted);
+      font-size:14px;
+    }
+    @media(max-width:900px){
+      .hero{
+        grid-template-columns:1fr;
+        gap: 32px;
+      }
+      .grid{
+        grid-template-columns:1fr;
+      }
+      nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="container">
+    <div class="logo">
+      <div class="mark">
+        <img src="icon.jpg" alt="TAI Research Logo">
+      </div>
+      <div>
+        <div style="font-weight:700">TAI Research</div>
+        <small style="color:var(--muted)">Building the Future of Intelligence</small>
+      </div>
+    </div>
+    <nav>
+      <a href="#products">Products</a>
+      <a href="#research">Research</a>
+      <a href="#news">News</a>
+      <a href="#developers">Developers</a>
+      <a href="#support">Support</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <h1>Building the Future of Intelligence.</h1>
+        <p>TAI Research explores and develops artificial intelligence systems to benefit humanity. We offer AI services to public and we also build, open-source, and ship research previews for the community.</p>
+        <p>
+          <a class="btn" href="https://ltyleo.github.io/TAI-Sigma-Chat/" target="_blank">Experience TAI Sigma Chat</a>
+          <a class="btn outline" style="margin-left:12px;" href="#research">Explore Research</a>
+        </p>
+      </div>
+      <div class="card">
+        <strong style="display:block;margin-bottom:12px;color:var(--muted)">Latest Release</strong>
+        <div style="font-weight:600;font-size:18px">GTC-2 Large — Public Beta</div>
+        <div style="color:var(--muted);margin:12px 0">Weights available on Hugging Face · MIT License</div>
+        <div style="display:flex;gap:12px;margin-top:16px">
+          <a class="btn" href="https://huggingface.co/TAI-Research/GTC-2-Large-Base-Model/tree/main" target="_blank">Model on Hugging Face</a>
+          <a class="btn outline" href="https://github.com/LTYLeo/GTC-2-Large-Base-Model" target="_blank">Repository</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="products">
+      <h2>Products</h2>
+      <p style="color:var(--muted)">Deployments and demos built from our research.</p>
+      <div class="grid">
+        <div class="card">
+          <h3>TAI Sigma Chat</h3>
+          <p style="color:var(--muted)">A conversational demo showcasing the GTC Series Language Models. Multi-model switching and public beta access.</p>
+          <a class="btn" href="https://ltyleo.github.io/TAI-Sigma-Chat/" target="_blank">Try demo</a>
+        </div>
+        <div class="card">
+          <h3>Sigma Series</h3>
+          <p style="color:var(--muted)">Domain-specific expert models: Sigma-Gobang, Sigma-Paint, Sigma-Prove, and more.</p>
+        </div>
+        <div class="card">
+          <h3>Developer Platform</h3>
+          <p style="color:var(--muted)">APIs and developer tools (coming soon). Sign up for early access.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="research">
+      <h2>Research</h2>
+      <p style="color:var(--muted)">Public research projects, papers, and open-source releases.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px">
+        <div class="card">
+          <h3>GTC Series</h3>
+          <p style="color:var(--muted)">Generative Trained Chatbot family — from GTC-1 to GTC-2. See model cards and checkpoints on Hugging Face.</p>
+          <p style="margin-top:16px"><a href="https://huggingface.co/TAI-Research" target="_blank" class="btn">View models</a></p>
+        </div>
+        <div class="card">
+          <h3>SGNN: Synaptic-pruning and Genetic Neural Network</h3>
+          <p style="color:var(--muted)">Experimental algorithms: SGNN.</p>
+          <p style="margin-top:16px"><a href="https://github.com/LTYLeo/SGNN-Experimental" target="_blank" class="btn outline">Repository</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="news">
+      <h2>News</h2>
+      <div style="display:flex;flex-direction:column;gap:16px;margin-top:16px">
+        <div class="card news-item">
+          <div style="flex:1">
+            <strong>2025-09-19 — GTC-2 Large Base Model Launched</strong>
+            <div style="color:var(--muted);margin-top:8px">Weights and repository published. Public beta available on the demo site.</div>
+          </div>
+        </div>
+        <div class="card news-item">
+          <div style="flex:1">
+            <strong>2025-09-09 — Multi-model switching is now available!</strong>
+            <div style="color:var(--muted);margin-top:8px">You can now select different models and experience them.</div>
+          </div>
+        </div>
+        <div class="card news-item">
+          <div style="flex:1">
+            <strong>2025-09-07 — Introducing TAI Sigma Chat!</strong>
+            <div style="color:var(--muted);margin-top:8px">Start using our models instantly!</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="developers">
+      <h2>Developers</h2>
+      <p style="color:var(--muted)">Tools, API docs, SDKs and examples to help you integrate our models.</p>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:16px">
+        <div class="card" style="min-width:260px;flex:1">
+          <h3>API (coming soon)</h3>
+          <p style="color:var(--muted)">A lightweight API to call GTC/Sigma models. Start with limited-tier access for research and prototyping.</p>
+          <p style="margin-top:16px"><a class="btn" href="#" onclick="alert('Sign-up stub — integrate with your backend')">Request Access</a></p>
+        </div>
+        <div class="card" style="min-width:260px;flex:1">
+          <h3>Open Source</h3>
+          <p style="color:var(--muted)">All public repositories, model cards, and checkpoints. Contributions welcome.</p>
+          <p style="margin-top:16px"><a class="btn" href="https://github.com/LTYLeo" target="_blank">GitHub</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="support">
+      <h2>Support</h2>
+      <p style="color:var(--muted)">TAI Research is a student-run research team. Your support helps us access compute and accelerate research.</p>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:16px">
+        <div class="card" style="min-width:240px;flex:1">
+          <h3>Patron — Pro</h3>
+          <p style="color:var(--muted)">Monthly support plans to get more access and early previews.</p>
+          <p style="margin-top:16px"><a class="btn" href="https://afdian.com/a/tai_research" target="_blank">Support on AfDian</a></p>
+        </div>
+        <div class="card" style="min-width:240px;flex:1">
+          <h3>Contact</h3>
+          <p style="color:var(--muted)">TAI-Research@outlook.com</p>
+          <p style="margin-top:16px"><a class="btn outline" href="mailto:TAI-Research@outlook.com">Email Us</a></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="container">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+      <div>© TAI Research</div>
+      <div style="display:flex;gap:16px">
+        <a href="https://github.com/LTYLeo" target="_blank" style="color:var(--muted);text-decoration:none">GitHub</a>
+        <a href="https://huggingface.co/TAI-Research" target="_blank" style="color:var(--muted);text-decoration:none">Hugging Face</a>
+        <a href="https://space.bilibili.com/88158150" target="_blank" style="color:var(--muted);text-decoration:none">Bilibili</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
