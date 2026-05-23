@@ -159,6 +159,20 @@
       color: white;
     }
 
+    /* 徽章样式 */
+    .badge {
+      display: inline-block;
+      background: rgba(59,130,246,0.2);
+      border: 1px solid rgba(59,130,246,0.5);
+      border-radius: 20px;
+      padding: 2px 10px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #60a5fa;
+      margin-left: 12px;
+      vertical-align: middle;
+    }
+
     /* 模态框星空适配 */
     .modal-overlay {
       position: fixed;
@@ -278,6 +292,12 @@
       font-weight: 600;
       color: #eef2ff;
     }
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
     .hero p {
       color: #b9c7e0;
     }
@@ -287,6 +307,12 @@
       align-items: flex-start;
       background: rgba(15, 20, 32, 0.7);
       backdrop-filter: blur(4px);
+    }
+    .news-date {
+      font-size: 14px;
+      font-weight: 600;
+      color: #60a5fa;
+      min-width: 110px;
     }
     footer {
       padding: 32px 0;
@@ -302,7 +328,7 @@
     footer a:hover {
       color: white;
     }
-    /* 响应式无变化保留原本结构 */
+    /* 响应式 */
     @media(max-width:900px){
       .hero {
         grid-template-columns: 1fr;
@@ -316,6 +342,9 @@
       }
       .hero h1 {
         font-size: 38px;
+      }
+      .news-date {
+        min-width: 80px;
       }
     }
     /* 链接样式统一 */
@@ -354,7 +383,7 @@
 </head>
 <body>
 
-  <!-- 模态通知框（无内容改动）-->
+  <!-- 模态通知框 -->
   <div id="noticeModal" class="modal-overlay" style="display: none;">
     <div class="modal-content">
       <button id="closeModal" class="modal-close" aria-label="Close">×</button>
@@ -396,7 +425,6 @@
   <main class="container">
     <section class="hero">
       <div>
-        <!-- 此处标题为渐变炫酷色  -->
         <h1>Building the Future of Intelligence.</h1>
         <p>TAI Research explores and develops artificial intelligence systems to benefit humanity. We offer AI services to public and we also build, open-source, and ship research previews for the community.</p>
         <p>
@@ -406,11 +434,14 @@
       </div>
       <div class="card">
         <strong style="display:block;margin-bottom:12px;color:var(--muted)">Latest Open Source Release</strong>
-        <div style="font-weight:600;font-size:18px; color:#f0f3ff">ESFT GTC-2 — Release</div>
-        <div style="color:var(--muted);margin:12px 0">Weights available on Hugging Face · MIT License</div>
-        <div style="display:flex;gap:12px;margin-top:16px">
-          <a class="btn" href="https://huggingface.co/TAI-Research/ESFT-GTC-2/tree/main" target="_blank">Model on Hugging Face</a>
-          <a class="btn outline" href="https://github.com/LTYLeo/ESFT-GTC-2" target="_blank">Repository</a>
+        <div>
+          <span style="font-weight:600;font-size:18px; color:#f0f3ff">GTC-Guard-0</span>
+          <span class="badge">First Safety Model</span>
+        </div>
+        <div style="color:var(--muted);margin:12px 0">A lightweight text safety classifier — the first model in the TAI Guardian series. Built from scratch for AI alignment and content safety.</div>
+        <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap">
+          <a class="btn" href="https://huggingface.co/TAI-Research/GTC-Guard-0" target="_blank">🤗 Model on Hugging Face</a>
+          <a class="btn outline" href="https://github.com/LTYLeo/GTC-Guard-0" target="_blank">GitHub</a>
         </div>
       </div>
     </section>
@@ -430,8 +461,9 @@
           <a class="btn" href="https://ltyleo.github.io/gobang/" target="_blank">Try Sigma Gobang</a>
         </div>
         <div class="card">
-          <h3>Developer Platform</h3>
-          <p style="color:var(--muted)">APIs and developer tools (coming soon). Sign up for early access.</p>
+          <h3>TAI Guardian</h3>
+          <p style="color:var(--muted)">AI Safety model series for content moderation and alignment. Starting with GTC-Guard-0, we build safety from the ground up.</p>
+          <a class="btn outline" href="https://huggingface.co/TAI-Research/GTC-Guard-0" target="_blank">Explore Guardian</a>
         </div>
       </div>
     </section>
@@ -446,9 +478,9 @@
           <p style="margin-top:16px"><a href="https://huggingface.co/TAI-Research" target="_blank" class="btn">View models</a></p>
         </div>
         <div class="card">
-          <h3>SGNN: Synaptic-pruning and Genetic Neural Network</h3>
-          <p style="color:var(--muted)">Experimental algorithms: SGNN.</p>
-          <p style="margin-top:16px"><a href="https://github.com/LTYLeo/SGNN-Experimental" target="_blank" class="btn outline">Repository</a></p>
+          <h3>TAI Guardian <span class="badge">New</span></h3>
+          <p style="color:var(--muted)">A safety-first model series for text moderation. GTC-Guard-0 is the first baseline classifier, designed for interpretability and lightweight deployment.</p>
+          <p style="margin-top:16px"><a href="https://huggingface.co/TAI-Research/GTC-Guard-0" target="_blank" class="btn outline">Read Model Card</a></p>
         </div>
       </div>
     </section>
@@ -456,69 +488,89 @@
     <section id="news">
       <h2>News</h2>
       <div style="display:flex;flex-direction:column;gap:16px;margin-top:16px">
+        <!-- 最新消息：GTC-Guard-0 发布 -->
         <div class="card news-item">
+          <div class="news-date">2026-5-23</div>
           <div style="flex:1">
-            <strong>2026-4-30 — Introducing Sigma!</strong>
+            <strong>🔥 GTC-Guard-0 Released — TAI Guardian's First Safety Model</strong>
+            <div style="color:var(--muted);margin-top:8px">We're proud to announce GTC-Guard-0, the first model in the TAI Guardian series. This lightweight text safety classifier (under 10M parameters) is built for interpretability and CPU inference. It marks TAI Research's first step into AI alignment and content safety — building values from the first line of code. Available now on Hugging Face under MIT license.</div>
+            <div style="margin-top:12px"><a href="https://huggingface.co/TAI-Research/GTC-Guard-0" target="_blank" class="btn outline" style="padding:6px 16px;font-size:12px">🤗 Download on Hugging Face →</a></div>
+          </div>
+        </div>
+        <div class="card news-item">
+          <div class="news-date">2026-4-30</div>
+          <div style="flex:1">
+            <strong>Introducing Sigma!</strong>
             <div style="color:var(--muted);margin-top:8px">After a long rest, we are now back. TAI Sigma Chat is now called Sigma.</div>
           </div>
         </div>
         <div class="card news-item">
+          <div class="news-date">2025-11-14</div>
           <div style="flex:1">
-            <strong>2025-11-14 — ESFT GTC-2 Open Source</strong>
+            <strong>ESFT GTC-2 Open Source</strong>
             <div style="color:var(--muted);margin-top:8px">We are back after a long pause. Weights and repository published.</div>
           </div>
         </div>
         <div class="card news-item">
+          <div class="news-date">2025-10-04</div>
           <div style="flex:1">
-            <strong>2025-10-04 — Introducing Sigma Gobang 2!</strong>
-            <div style="color:var(--muted);margin-top:8px">The previous Sigma Gobang Turbo is too slow, so we create a new one ------ Sigma Gobang 2.</div>
+            <strong>Introducing Sigma Gobang 2!</strong>
+            <div style="color:var(--muted);margin-top:8px">The previous Sigma Gobang Turbo is too slow, so we create a new one — Sigma Gobang 2.</div>
           </div>
         </div>
         <div class="card news-item">
+          <div class="news-date">2025-10-01</div>
           <div style="flex:1">
-            <strong>2025-10-01 — Introducing ESFT GTC-2!</strong>
+            <strong>Introducing ESFT GTC-2!</strong>
             <div style="color:var(--muted);margin-top:8px">An Early Supervised Fine-Tuned GTC-2 model for improved conversational performance.</div>
           </div>
         </div>
         <div class="card news-item">
+          <div class="news-date">2025-09-30</div>
           <div style="flex:1">
-            <strong>2025-09-30 — Sigma Gobang Turbo is now avaliable.</strong>
+            <strong>Sigma Gobang Turbo is now available.</strong>
             <div style="color:var(--muted);margin-top:8px">We enhanced the algorithm of Sigma Gobang and built the Sigma Gobang Turbo.</div>
           </div>
         </div>
         <div class="card news-item">
+          <div class="news-date">2025-09-26</div>
           <div style="flex:1">
-            <strong>2025-09-26 — Introducing Sigma Gobang online!</strong>
+            <strong>Introducing Sigma Gobang online!</strong>
             <div style="color:var(--muted);margin-top:8px">You can now access the Sigma Gobang online!</div>
           </div>
         </div>
         <div class="card news-item">
+          <div class="news-date">2025-09-21</div>
           <div style="flex:1">
-            <strong>2025-09-21 — We now offer two new models for developers: GTC-2 Large mini and GTC-2 Large nano</strong>
+            <strong>We now offer two new models for developers: GTC-2 Large mini and GTC-2 Large nano</strong>
             <div style="color:var(--muted);margin-top:8px">Developers can now visit Hugging Face to download these two models. The two models have the performance of the approximate GTC-2 Large while reducing the parameter size.</div>
           </div>
         </div>
         <div class="card news-item">
+          <div class="news-date">2025-09-20</div>
           <div style="flex:1">
-            <strong>2025-09-20 — TAI Sigma Chat is now equipped with account login and conversation history.</strong>
+            <strong>TAI Sigma Chat is now equipped with account login and conversation history.</strong>
             <div style="color:var(--muted);margin-top:8px">Users can explore the chat freely without an account, or choose to register and log in to unlock persistent conversation history. This marks a step forward in making TAI Sigma Chat not only a research demo, but also a growing platform for interactive intelligence.</div>
           </div>
         </div>
         <div class="card news-item">
+          <div class="news-date">2025-09-19</div>
           <div style="flex:1">
-            <strong>2025-09-19 — GTC-2 Large Base Model Launched</strong>
+            <strong>GTC-2 Large Base Model Launched</strong>
             <div style="color:var(--muted);margin-top:8px">Weights and repository published. Public beta available on the demo site.</div>
           </div>
         </div>
         <div class="card news-item">
+          <div class="news-date">2025-09-09</div>
           <div style="flex:1">
-            <strong>2025-09-09 — Multi-model switching is now available!</strong>
+            <strong>Multi-model switching is now available!</strong>
             <div style="color:var(--muted);margin-top:8px">You can now select different models and experience them.</div>
           </div>
         </div>
         <div class="card news-item">
+          <div class="news-date">2025-09-07</div>
           <div style="flex:1">
-            <strong>2025-09-07 — Introducing TAI Sigma Chat!</strong>
+            <strong>Introducing TAI Sigma Chat!</strong>
             <div style="color:var(--muted);margin-top:8px">Start using our models instantly!</div>
           </div>
         </div>
@@ -530,14 +582,14 @@
       <p style="color:var(--muted)">Tools, API docs, SDKs and examples to help you integrate our models.</p>
       <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:16px">
         <div class="card" style="min-width:260px;flex:1">
-          <h3>API (coming soon)</h3>
-          <p style="color:var(--muted)">A lightweight API to call GTC/Sigma models. Start with limited-tier access for research and prototyping.</p>
-          <p style="margin-top:16px"><a class="btn" href="mailto:TAI-Research@outlook.com" onclick="alert('Sign-up stub — integrate with your backend')">Request Access</a></p>
+          <h3>GTC-Guard-0 API</h3>
+          <p style="color:var(--muted)">Lightweight safety classifier. Use it as a pre-filter for your LLM applications.</p>
+          <p style="margin-top:16px"><a class="btn" href="https://huggingface.co/TAI-Research/GTC-Guard-0" target="_blank">Get Started</a></p>
         </div>
         <div class="card" style="min-width:260px;flex:1">
           <h3>Open Source</h3>
           <p style="color:var(--muted)">All public repositories, model cards, and checkpoints. Contributions welcome.</p>
-          <p style="margin-top:16px"><a class="btn" href="https://github.com/LTYLeo" target="_blank">GitHub</a>
+          <p style="margin-top:16px"><a class="btn" href="https://github.com/LTYLeo" target="_blank">GitHub</a></p>
         </div>
       </div>
     </section>
@@ -572,7 +624,7 @@
   </footer>
 
   <script>
-    // 模态框逻辑保持不变，内容完全未修改，符合原功能
+    // 模态框逻辑
     document.addEventListener('DOMContentLoaded', function() {
       const modal = document.getElementById('noticeModal');
       const closeBtn = document.getElementById('closeModal');
