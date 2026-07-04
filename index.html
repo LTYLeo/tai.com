@@ -1,660 +1,648 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>TAI Research — Building the Future of Intelligence</title>
-  <link rel="icon" href="icon.jpg" />
-  <meta name="description" content="TAI Research — Building the Future of Intelligence" />
-  <style>
-    /* 星空黑色主题 + 渐变文字 */
-    :root {
-      --bg: #0a0c12;
-      --card: rgba(18, 22, 32, 0.75);
-      --card-border: rgba(50, 60, 85, 0.5);
-      --text: #eef2ff;
-      --muted: #a0a8c0;
-      --accent: #3b82f6;
-      --accent-glow: #6366f1;
-      --border: #1f2a3e;
-      --notice-bg: rgba(30, 30, 50, 0.9);
-      --notice-text: #e2e8f0;
-      --notice-border: #4b5563;
-      --star-color: rgba(255, 255, 255, 0.2);
-    }
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>TAI Research — Building the Future of Intelligence</title>
+    <link rel="icon" href="icon.jpg" />
+    <meta name="description" content="TAI Research — Building the Future of Intelligence" />
+    <style>
+        /* 星空黑色主题 + 渐变文字 */
+        :root {
+            --bg: #0a0c12;
+            --card: rgba(18, 22, 32, 0.75);
+            --card-border: rgba(50, 60, 85, 0.5);
+            --text: #eef2ff;
+            --muted: #a0a8c0;
+            --accent: #3b82f6;
+            --accent-glow: #6366f1;
+            --border: #1f2a3e;
+            --notice-bg: rgba(30, 30, 50, 0.9);
+            --notice-text: #e2e8f0;
+            --notice-border: #4b5563;
+            --star-color: rgba(255, 255, 255, 0.2);
+        }
 
-    * {
-      box-sizing: border-box;
-    }
+        * {
+            box-sizing: border-box;
+        }
 
-    body {
-      margin: 0;
-      font-family: "Inter", "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif;
-      background: radial-gradient(ellipse at 20% 30%, #0c0f1c, #020408);
-      color: var(--text);
-      line-height: 1.5;
-      position: relative;
-      overflow-x: hidden;
-    }
+        body {
+            margin: 0;
+            font-family: "Inter", "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif;
+            background: radial-gradient(ellipse at 20% 30%, #0c0f1c, #020408);
+            color: var(--text);
+            line-height: 1.5;
+            position: relative;
+            overflow-x: hidden;
+        }
 
-    /* 星空动态层 */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      background-image: 
-        radial-gradient(2px 2px at 12% 34%, #fff, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 86% 22%, #f8fafc, rgba(0,0,0,0)),
-        radial-gradient(3px 3px at 45% 72%, #ddd, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 71% 91%, #cbd5e1, rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 33% 15%, white, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 95% 63%, #e2e8f0, rgba(0,0,0,0)),
-        radial-gradient(3px 2px at 7% 88%, #fff, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 62% 44%, #94a3b8, rgba(0,0,0,0));
-      background-size: 200px 200px, 300px 300px, 400px 400px, 280px 280px, 350px 350px, 220px 220px, 500px 500px, 180px 180px;
-      background-repeat: no-repeat;
-      opacity: 0.6;
-      animation: starTwinkle 8s infinite alternate;
-      z-index: 0;
-    }
+        /* 星空动态层 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background-image:
+                radial-gradient(2px 2px at 12% 34%, #fff, rgba(0, 0, 0, 0)),
+                radial-gradient(1px 1px at 86% 22%, #f8fafc, rgba(0, 0, 0, 0)),
+                radial-gradient(3px 3px at 45% 72%, #ddd, rgba(0, 0, 0, 0)),
+                radial-gradient(1px 1px at 71% 91%, #cbd5e1, rgba(0, 0, 0, 0)),
+                radial-gradient(2px 2px at 33% 15%, white, rgba(0, 0, 0, 0)),
+                radial-gradient(1px 1px at 95% 63%, #e2e8f0, rgba(0, 0, 0, 0)),
+                radial-gradient(3px 2px at 7% 88%, #fff, rgba(0, 0, 0, 0)),
+                radial-gradient(1px 1px at 62% 44%, #94a3b8, rgba(0, 0, 0, 0));
+            background-size: 200px 200px, 300px 300px, 400px 400px, 280px 280px, 350px 350px, 220px 220px, 500px 500px, 180px 180px;
+            background-repeat: no-repeat;
+            opacity: 0.6;
+            animation: starTwinkle 8s infinite alternate;
+            z-index: 0;
+        }
 
-    /* 微光晕层 */
-    body::after {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at 50% 30%, rgba(59,130,246,0.08) 0%, rgba(0,0,0,0) 70%);
-      pointer-events: none;
-      z-index: 0;
-    }
+        /* 微光晕层 */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 30%, rgba(59, 130, 246, 0.08) 0%, rgba(0, 0, 0, 0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
 
-    @keyframes starTwinkle {
-      0% { opacity: 0.4; }
-      100% { opacity: 0.9; }
-    }
+        @keyframes starTwinkle {
+            0% {
+                opacity: 0.4;
+            }
+            100% {
+                opacity: 0.9;
+            }
+        }
 
-    /* 所有内容都在上层 */
-    header, main, footer, .modal-overlay, .container, .card, .btn, nav, .logo, .hero, section {
-      position: relative;
-      z-index: 2;
-    }
+        /* 所有内容都在上层 */
+        header,
+        main,
+        footer,
+        .modal-overlay,
+        .container,
+        .card,
+        .btn,
+        nav,
+        .logo,
+        .hero,
+        section {
+            position: relative;
+            z-index: 2;
+        }
 
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    /* 卡片玻璃质感 */
-    .card {
-      background: var(--card);
-      backdrop-filter: blur(10px);
-      padding: 24px;
-      border-radius: 20px;
-      border: 1px solid var(--card-border);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-      transition: transform 0.2s ease, border-color 0.2s;
-    }
-    .card:hover {
-      border-color: rgba(59,130,246,0.6);
-      transform: translateY(-2px);
-    }
+        /* 卡片玻璃质感 */
+        .card {
+            background: var(--card);
+            backdrop-filter: blur(10px);
+            padding: 24px;
+            border-radius: 20px;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease, border-color 0.2s;
+        }
+        .card:hover {
+            border-color: rgba(59, 130, 246, 0.6);
+            transform: translateY(-2px);
+        }
 
-    /* 渐变标题 Hero */
-    .hero h1 {
-      font-size: 48px;
-      line-height: 1.2;
-      margin: 0 0 20px;
-      font-weight: 800;
-      background: linear-gradient(135deg, #FFFFFF, #A5B4FC, #60A5FA, #C084FC);
-      background-size: 300% 300%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      animation: gradientShift 5s ease infinite;
-      letter-spacing: -0.02em;
-    }
+        /* 渐变标题 Hero */
+        .hero h1 {
+            font-size: 48px;
+            line-height: 1.2;
+            margin: 0 0 20px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFFFFF, #A5B4FC, #60A5FA, #C084FC);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientShift 5s ease infinite;
+            letter-spacing: -0.02em;
+        }
 
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
 
-    /* 按钮样式 - 深色炫酷 */
-    .btn {
-      display: inline-block;
-      padding: 12px 28px;
-      border-radius: 40px;
-      background: linear-gradient(145deg, #1e293b, #0f172a);
-      color: #ffffff;
-      font-weight: 500;
-      text-decoration: none;
-      font-size: 14px;
-      border: 1px solid rgba(59,130,246,0.5);
-      transition: all 0.25s ease;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
-    .btn:hover {
-      background: linear-gradient(145deg, #2d3a5e, #1e293b);
-      border-color: #60a5fa;
-      transform: scale(1.02);
-      box-shadow: 0 6px 14px rgba(59,130,246,0.25);
-    }
-    .btn.outline {
-      background: transparent;
-      border: 1px solid #4b5563;
-      color: #cbd5e6;
-    }
-    .btn.outline:hover {
-      background: rgba(59,130,246,0.15);
-      border-color: #3b82f6;
-      color: white;
-    }
+        /* 按钮样式 - 深色炫酷 */
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 40px;
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            color: #ffffff;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 14px;
+            border: 1px solid rgba(59, 130, 246, 0.5);
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .btn:hover {
+            background: linear-gradient(145deg, #2d3a5e, #1e293b);
+            border-color: #60a5fa;
+            transform: scale(1.02);
+            box-shadow: 0 6px 14px rgba(59, 130, 246, 0.25);
+        }
+        .btn.outline {
+            background: transparent;
+            border: 1px solid #4b5563;
+            color: #cbd5e6;
+        }
+        .btn.outline:hover {
+            background: rgba(59, 130, 246, 0.15);
+            border-color: #3b82f6;
+            color: white;
+        }
 
-    /* 徽章样式 */
-    .badge {
-      display: inline-block;
-      background: rgba(59,130,246,0.2);
-      border: 1px solid rgba(59,130,246,0.5);
-      border-radius: 20px;
-      padding: 2px 10px;
-      font-size: 12px;
-      font-weight: 500;
-      color: #60a5fa;
-      margin-left: 12px;
-      vertical-align: middle;
-    }
+        /* 徽章样式 */
+        .badge {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.5);
+            border-radius: 20px;
+            padding: 2px 10px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #60a5fa;
+            margin-left: 12px;
+            vertical-align: middle;
+        }
 
-    /* 模态框星空适配 */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(5, 7, 15, 0.85);
-      backdrop-filter: blur(5px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-    .modal-content {
-      background: #10141f;
-      max-width: 600px;
-      width: 90%;
-      max-height: 80vh;
-      overflow-y: auto;
-      border-radius: 28px;
-      box-shadow: 0 25px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(59,130,246,0.3);
-      padding: 28px;
-      position: relative;
-      color: #eef2ff;
-    }
-    .modal-close {
-      position: absolute;
-      top: 18px;
-      right: 22px;
-      background: none;
-      border: none;
-      font-size: 28px;
-      cursor: pointer;
-      color: #9ca3af;
-    }
-    .modal-close:hover {
-      color: white;
-    }
-    .modal-title {
-      font-size: 26px;
-      font-weight: 700;
-      margin: 0 0 16px 0;
-      background: linear-gradient(120deg, #e0f2fe, #a5f3fc);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .modal-body ul li {
-      color: #cbd5e6;
-    }
-    .modal-signature {
-      margin-top: 20px;
-      font-style: italic;
-      text-align: right;
-      color: #90a3bf;
-    }
-    /* 头部 */
-    header {
-      padding: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid rgba(59,130,246,0.2);
-      background: rgba(8, 12, 22, 0.7);
-      backdrop-filter: blur(12px);
-      border-radius: 0 0 28px 28px;
-      margin-bottom: 8px;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .logo .mark {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 0 0 1px #3b82f6;
-    }
-    .logo .mark img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    nav a {
-      color: #cbd5e6;
-      text-decoration: none;
-      margin-left: 28px;
-      font-weight: 500;
-      font-size: 14px;
-      transition: 0.2s;
-    }
-    nav a:hover {
-      color: #ffffff;
-      text-shadow: 0 0 5px #3b82f6;
-    }
-    /* 区块分割线 */
-    section {
-      padding: 48px 0;
-      border-bottom: 1px solid rgba(59,130,246,0.15);
-    }
-    h2 {
-      margin: 0 0 16px;
-      font-size: 32px;
-      font-weight: 700;
-      letter-spacing: -0.3px;
-      background: linear-gradient(135deg, #f0f4ff, #b9c8ff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    h3 {
-      margin: 0 0 12px;
-      font-size: 20px;
-      font-weight: 600;
-      color: #eef2ff;
-    }
-    .hero {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      align-items: center;
-    }
-    .hero p {
-      color: #b9c7e0;
-    }
-    .news-item {
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-      background: rgba(15, 20, 32, 0.7);
-      backdrop-filter: blur(4px);
-    }
-    .news-date {
-      font-size: 14px;
-      font-weight: 600;
-      color: #60a5fa;
-      min-width: 110px;
-    }
-    footer {
-      padding: 32px 0;
-      color: #7f8cae;
-      font-size: 14px;
-      border-top: 1px solid rgba(59,130,246,0.2);
-      margin-top: 10px;
-    }
-    footer a {
-      color: #8ba0d0;
-      transition: 0.2s;
-    }
-    footer a:hover {
-      color: white;
-    }
-    /* 响应式 */
-    @media(max-width:900px){
-      .hero {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-      .grid {
-        grid-template-columns: 1fr;
-      }
-      nav {
-        display: none;
-      }
-      .hero h1 {
-        font-size: 38px;
-      }
-      .news-date {
-        min-width: 80px;
-      }
-    }
-    /* 链接样式统一 */
-    a {
-      color: #9bb4ff;
-    }
-    a:hover {
-      color: white;
-    }
-    /* 列表/内容微调 */
-    .modal-body ul {
-      padding-left: 20px;
-    }
-    .modal-body li {
-      margin-bottom: 8px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 28px;
-    }
-    @media (max-width: 700px) {
-      .grid { grid-template-columns: 1fr; }
-    }
-    /* 滚动条暗色 */
-    ::-webkit-scrollbar {
-      width: 8px;
-      background: #11161f;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #2d3a52;
-      border-radius: 8px;
-    }
-  </style>
+        /* 模态框星空适配 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(5, 7, 15, 0.85);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: #10141f;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            border-radius: 28px;
+            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(59, 130, 246, 0.3);
+            padding: 28px;
+            position: relative;
+            color: #eef2ff;
+        }
+        .modal-close {
+            position: absolute;
+            top: 18px;
+            right: 22px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #9ca3af;
+        }
+        .modal-close:hover {
+            color: white;
+        }
+        .modal-title {
+            font-size: 26px;
+            font-weight: 700;
+            margin: 0 0 16px 0;
+            background: linear-gradient(120deg, #e0f2fe, #a5f3fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .modal-body ul li {
+            color: #cbd5e6;
+        }
+        .modal-signature {
+            margin-top: 20px;
+            font-style: italic;
+            text-align: right;
+            color: #90a3bf;
+        }
+        /* 头部 */
+        header {
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            background: rgba(8, 12, 22, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 0 0 28px 28px;
+            margin-bottom: 8px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo .mark {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 0 0 1px #3b82f6;
+        }
+        .logo .mark img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        nav a {
+            color: #cbd5e6;
+            text-decoration: none;
+            margin-left: 28px;
+            font-weight: 500;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+        nav a:hover {
+            color: #ffffff;
+            text-shadow: 0 0 5px #3b82f6;
+        }
+        /* 区块分割线 */
+        section {
+            padding: 48px 0;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.15);
+        }
+        h2 {
+            margin: 0 0 16px;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #f0f4ff, #b9c8ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        h3 {
+            margin: 0 0 12px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #eef2ff;
+        }
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            align-items: center;
+        }
+        .hero p {
+            color: #b9c7e0;
+        }
+        .news-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            background: rgba(15, 20, 32, 0.7);
+            backdrop-filter: blur(4px);
+        }
+        .news-date {
+            font-size: 14px;
+            font-weight: 600;
+            color: #60a5fa;
+            min-width: 110px;
+        }
+        footer {
+            padding: 32px 0;
+            color: #7f8cae;
+            font-size: 14px;
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+            margin-top: 10px;
+        }
+        footer a {
+            color: #8ba0d0;
+            transition: 0.2s;
+        }
+        footer a:hover {
+            color: white;
+        }
+        /* 响应式 */
+        @media(max-width:900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            nav {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 38px;
+            }
+            .news-date {
+                min-width: 80px;
+            }
+        }
+        /* 链接样式统一 */
+        a {
+            color: #9bb4ff;
+        }
+        a:hover {
+            color: white;
+        }
+        /* 列表/内容微调 */
+        .modal-body ul {
+            padding-left: 20px;
+        }
+        .modal-body li {
+            margin-bottom: 8px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 28px;
+        }
+        @media (max-width: 700px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        /* 滚动条暗色 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            background: #11161f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2d3a52;
+            border-radius: 8px;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- 模态通知框 -->
-  <div id="noticeModal" class="modal-overlay" style="display: none;">
-    <div class="modal-content">
-      <button id="closeModal" class="modal-close" aria-label="Close">×</button>
-      <h2 class="modal-title">Notice on Research and Development Progress</h2>
-      <div class="modal-body">
-        <p>Due to limited time and energy, TAI Research will temporarily adjust its research and development pace.</p>
-        <ul>
-          <li><strong>Regular updates:</strong> Small products and incremental improvements may still be released from time to time.</li>
-          <li><strong>Major leaps:</strong> Large-scale upgrades (such as the transition from GTC-2 to GTC-3 Omni) will be postponed for now.</li>
-          <li><strong>Internal focus:</strong> Our main energy during this stage will be invested in long-term foundational research projects, which require deep exploration and uninterrupted thinking.</li>
-        </ul>
-        <p>This adjustment allows us to better balance current development with future breakthroughs.</p>
-        <p>We sincerely appreciate your understanding and continued support.<br>
-        The journey of intelligence is long—every pause is to prepare for a greater leap forward.</p>
-        <div class="modal-signature">TAI Research<br>2025.9</div>
-      </div>
-    </div>
-  </div>
+    <header class="container">
+        <div class="logo">
+            <div class="mark">
+                <img src="icon.jpg" alt="TAI Research Logo">
+            </div>
+            <div>
+                <div style="font-weight:700; color:#ffffff;">TAI Research</div>
+                <small style="color:var(--muted)">Building the Future of Intelligence</small>
+            </div>
+        </div>
+        <nav>
+            <a href="#products">Products</a>
+            <a href="#research">Research</a>
+            <a href="#news">News</a>
+            <a href="#developers">Developers</a>
+            <a href="#support">Support</a>
+        </nav>
+    </header>
 
-  <header class="container">
-    <div class="logo">
-      <div class="mark">
-        <img src="icon.jpg" alt="TAI Research Logo">
-      </div>
-      <div>
-        <div style="font-weight:700; color:#ffffff;">TAI Research</div>
-        <small style="color:var(--muted)">Building the Future of Intelligence</small>
-      </div>
-    </div>
-    <nav>
-      <a href="#products">Products</a>
-      <a href="#research">Research</a>
-      <a href="#news">News</a>
-      <a href="#developers">Developers</a>
-      <a href="#support">Support</a>
-    </nav>
-  </header>
+    <main class="container">
+        <section class="hero">
+            <div>
+                <h1>Building the Future of Intelligence.</h1>
+                <p>TAI Research explores and develops artificial intelligence systems to benefit humanity. We offer AI services to public and we also build, open-source, and ship research previews for the community.</p>
+                <p>
+                    <a class="btn" href="https://ltyleo.github.io/sigma/" target="_blank">Experience Sigma</a>
+                    <a class="btn outline" style="margin-left:12px;" href="#research">Explore Research</a>
+                </p>
+            </div>
+            <div class="card">
+                <strong style="display:block;margin-bottom:12px;color:var(--muted)">Latest Open Source Release</strong>
+                <div>
+                    <span style="font-weight:600;font-size:18px; color:#f0f3ff">GTC-Guard-0</span>
+                    <span class="badge">First Safety Model</span>
+                </div>
+                <div style="color:var(--muted);margin:12px 0">A lightweight text safety classifier — the first model in the TAI Guardian series. Built from scratch for AI alignment and content safety.</div>
+                <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap">
+                    <a class="btn" href="https://huggingface.co/TAI-Research/GTC-Guard-0" target="_blank">🤗 Model on Hugging Face</a>
+                    <a class="btn outline" href="https://github.com/LTYLeo/GTC-Guard-0" target="_blank">GitHub</a>
+                </div>
+            </div>
+        </section>
 
-  <main class="container">
-    <section class="hero">
-      <div>
-        <h1>Building the Future of Intelligence.</h1>
-        <p>TAI Research explores and develops artificial intelligence systems to benefit humanity. We offer AI services to public and we also build, open-source, and ship research previews for the community.</p>
-        <p>
-          <a class="btn" href="https://ltyleo.github.io/sigma/" target="_blank">Experience Sigma</a>
-          <a class="btn outline" style="margin-left:12px;" href="#research">Explore Research</a>
-        </p>
-      </div>
-      <div class="card">
-        <strong style="display:block;margin-bottom:12px;color:var(--muted)">Latest Open Source Release</strong>
-        <div>
-          <span style="font-weight:600;font-size:18px; color:#f0f3ff">GTC-Guard-0</span>
-          <span class="badge">First Safety Model</span>
-        </div>
-        <div style="color:var(--muted);margin:12px 0">A lightweight text safety classifier — the first model in the TAI Guardian series. Built from scratch for AI alignment and content safety.</div>
-        <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap">
-          <a class="btn" href="https://huggingface.co/TAI-Research/GTC-Guard-0" target="_blank">🤗 Model on Hugging Face</a>
-          <a class="btn outline" href="https://github.com/LTYLeo/GTC-Guard-0" target="_blank">GitHub</a>
-        </div>
-      </div>
-    </section>
+        <section id="products">
+            <h2>Products</h2>
+            <p style="color:var(--muted)">Deployments and demos built from our research.</p>
+            <div class="grid">
+                <div class="card">
+                    <h3>Sigma</h3>
+                    <p style="color:var(--muted)">A conversational website showcasing the GTC Series Language Models. You can access different models with an account or just start using our models instantly.</p>
+                    <a class="btn" href="https://ltyleo.github.io/sigma/" target="_blank">Try Sigma</a>
+                </div>
+                <div class="card">
+                    <h3>Sigma Series</h3>
+                    <p style="color:var(--muted)">Domain-specific expert models: Sigma Gobang, Sigma Paint, Sigma Prove, and more.</p>
+                    <a class="btn" href="https://ltyleo.github.io/gobang/" target="_blank">Try Sigma Gobang</a>
+                </div>
+                <div class="card">
+                    <h3>TAI Guardian</h3>
+                    <p style="color:var(--muted)">AI Safety model series for content moderation and alignment. Starting with GTC-Guard-0, we build safety from the ground up.</p>
+                    <a class="btn outline" href="https://huggingface.co/TAI-Research/GTC-Guard-0" target="_blank">Explore Guardian</a>
+                </div>
+            </div>
+        </section>
 
-    <section id="products">
-      <h2>Products</h2>
-      <p style="color:var(--muted)">Deployments and demos built from our research.</p>
-      <div class="grid">
-        <div class="card">
-          <h3>Sigma</h3>
-          <p style="color:var(--muted)">A conversational website showcasing the GTC Series Language Models. You can access different models with an account or just start using our models instantly.</p>
-          <a class="btn" href="https://ltyleo.github.io/sigma/" target="_blank">Try Sigma</a>
-        </div>
-        <div class="card">
-          <h3>Sigma Series</h3>
-          <p style="color:var(--muted)">Domain-specific expert models: Sigma Gobang, Sigma Paint, Sigma Prove, and more.</p>
-          <a class="btn" href="https://ltyleo.github.io/gobang/" target="_blank">Try Sigma Gobang</a>
-        </div>
-        <div class="card">
-          <h3>TAI Guardian</h3>
-          <p style="color:var(--muted)">AI Safety model series for content moderation and alignment. Starting with GTC-Guard-0, we build safety from the ground up.</p>
-          <a class="btn outline" href="https://huggingface.co/TAI-Research/GTC-Guard-0" target="_blank">Explore Guardian</a>
-        </div>
-      </div>
-    </section>
+        <section id="research">
+            <h2>Research</h2>
+            <p style="color:var(--muted)">Public research projects, papers, and open-source releases.</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px">
+                <div class="card">
+                    <h3>GTC Series</h3>
+                    <p style="color:var(--muted)">Generative Trained Chatbot family — from GTC-1 to GTC-2. See model cards and checkpoints on Hugging Face.</p>
+                    <p style="margin-top:16px"><a href="https://huggingface.co/TAI-Research" target="_blank" class="btn">View models</a></p>
+                </div>
+                <div class="card">
+                    <h3>TAI Guardian <span class="badge">New</span></h3>
+                    <p style="color:var(--muted)">A safety-first model series for text moderation. GTC-Guard-0 is the first baseline classifier, designed for interpretability and lightweight deployment.</p>
+                    <p style="margin-top:16px"><a href="https://huggingface.co/TAI-Research/GTC-Guard-0" target="_blank" class="btn outline">Read Model Card</a></p>
+                </div>
+            </div>
+        </section>
 
-    <section id="research">
-      <h2>Research</h2>
-      <p style="color:var(--muted)">Public research projects, papers, and open-source releases.</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px">
-        <div class="card">
-          <h3>GTC Series</h3>
-          <p style="color:var(--muted)">Generative Trained Chatbot family — from GTC-1 to GTC-2. See model cards and checkpoints on Hugging Face.</p>
-          <p style="margin-top:16px"><a href="https://huggingface.co/TAI-Research" target="_blank" class="btn">View models</a></p>
-        </div>
-        <div class="card">
-          <h3>TAI Guardian <span class="badge">New</span></h3>
-          <p style="color:var(--muted)">A safety-first model series for text moderation. GTC-Guard-0 is the first baseline classifier, designed for interpretability and lightweight deployment.</p>
-          <p style="margin-top:16px"><a href="https://huggingface.co/TAI-Research/GTC-Guard-0" target="_blank" class="btn outline">Read Model Card</a></p>
-        </div>
-      </div>
-    </section>
+        <section id="news">
+            <h2>News</h2>
+            <div style="display:flex;flex-direction:column;gap:16px;margin-top:16px">
 
-    <section id="news">
-      <h2>News</h2>
-      <div style="display:flex;flex-direction:column;gap:16px;margin-top:16px">
-        <!-- 最新消息：GTC-Guard-0 发布 -->
-        <div class="card news-item">
-          <div class="news-date">2026-5-23</div>
-          <div style="flex:1">
-            <strong>🔥 GTC-Guard-0 Released — TAI Guardian's First Safety Model</strong>
-            <div style="color:var(--muted);margin-top:8px">We're proud to announce GTC-Guard-0, the first model in the TAI Guardian series. This lightweight text safety classifier (under 10M parameters) is built for interpretability and CPU inference. It marks TAI Research's first step into AI alignment and content safety — building values from the first line of code. Available now on Hugging Face under MIT license.</div>
-            <div style="margin-top:12px"><a href="https://huggingface.co/TAI-Research/GTC-Guard-0" target="_blank" class="btn outline" style="padding:6px 16px;font-size:12px">🤗 Download on Hugging Face →</a></div>
-          </div>
-        </div>
-        <div class="card news-item">
-          <div class="news-date">2026-4-30</div>
-          <div style="flex:1">
-            <strong>Introducing Sigma!</strong>
-            <div style="color:var(--muted);margin-top:8px">After a long rest, we are now back. TAI Sigma Chat is now called Sigma.</div>
-          </div>
-        </div>
-        <div class="card news-item">
-          <div class="news-date">2025-11-14</div>
-          <div style="flex:1">
-            <strong>ESFT GTC-2 Open Source</strong>
-            <div style="color:var(--muted);margin-top:8px">We are back after a long pause. Weights and repository published.</div>
-          </div>
-        </div>
-        <div class="card news-item">
-          <div class="news-date">2025-10-04</div>
-          <div style="flex:1">
-            <strong>Introducing Sigma Gobang 2!</strong>
-            <div style="color:var(--muted);margin-top:8px">The previous Sigma Gobang Turbo is too slow, so we create a new one — Sigma Gobang 2.</div>
-          </div>
-        </div>
-        <div class="card news-item">
-          <div class="news-date">2025-10-01</div>
-          <div style="flex:1">
-            <strong>Introducing ESFT GTC-2!</strong>
-            <div style="color:var(--muted);margin-top:8px">An Early Supervised Fine-Tuned GTC-2 model for improved conversational performance.</div>
-          </div>
-        </div>
-        <div class="card news-item">
-          <div class="news-date">2025-09-30</div>
-          <div style="flex:1">
-            <strong>Sigma Gobang Turbo is now available.</strong>
-            <div style="color:var(--muted);margin-top:8px">We enhanced the algorithm of Sigma Gobang and built the Sigma Gobang Turbo.</div>
-          </div>
-        </div>
-        <div class="card news-item">
-          <div class="news-date">2025-09-26</div>
-          <div style="flex:1">
-            <strong>Introducing Sigma Gobang online!</strong>
-            <div style="color:var(--muted);margin-top:8px">You can now access the Sigma Gobang online!</div>
-          </div>
-        </div>
-        <div class="card news-item">
-          <div class="news-date">2025-09-21</div>
-          <div style="flex:1">
-            <strong>We now offer two new models for developers: GTC-2 Large mini and GTC-2 Large nano</strong>
-            <div style="color:var(--muted);margin-top:8px">Developers can now visit Hugging Face to download these two models. The two models have the performance of the approximate GTC-2 Large while reducing the parameter size.</div>
-          </div>
-        </div>
-        <div class="card news-item">
-          <div class="news-date">2025-09-20</div>
-          <div style="flex:1">
-            <strong>TAI Sigma Chat is now equipped with account login and conversation history.</strong>
-            <div style="color:var(--muted);margin-top:8px">Users can explore the chat freely without an account, or choose to register and log in to unlock persistent conversation history. This marks a step forward in making TAI Sigma Chat not only a research demo, but also a growing platform for interactive intelligence.</div>
-          </div>
-        </div>
-        <div class="card news-item">
-          <div class="news-date">2025-09-19</div>
-          <div style="flex:1">
-            <strong>GTC-2 Large Base Model Launched</strong>
-            <div style="color:var(--muted);margin-top:8px">Weights and repository published. Public beta available on the demo site.</div>
-          </div>
-        </div>
-        <div class="card news-item">
-          <div class="news-date">2025-09-09</div>
-          <div style="flex:1">
-            <strong>Multi-model switching is now available!</strong>
-            <div style="color:var(--muted);margin-top:8px">You can now select different models and experience them.</div>
-          </div>
-        </div>
-        <div class="card news-item">
-          <div class="news-date">2025-09-07</div>
-          <div style="flex:1">
-            <strong>Introducing TAI Sigma Chat!</strong>
-            <div style="color:var(--muted);margin-top:8px">Start using our models instantly!</div>
-          </div>
-        </div>
-      </div>
-    </section>
+                <!-- 新增新闻：GTC-2.5 Preview -->
+                <div class="card news-item">
+                    <div class="news-date">2026-7-3</div>
+                    <div style="flex:1">
+                        <strong>🚀 GTC-2.5 Preview Released — TAI Research's First Conversational Foundation Model</strong>
+                        <div style="color:var(--muted);margin-top:8px">
+                            We are excited to announce the release of GTC-2.5 Preview, the first conversational foundation model developed by TAI Research. Built upon the open-source MiniMind project and trained on a V100 GPU, this 64M-parameter model marks a critical milestone in validating our technical pipeline.
+                            <br><br>
+                            GTC-2.5 Preview demonstrates foundational capabilities in dialogue, knowledge retrieval, and code generation. While it is a compact research preview, it serves as a baseline for our upcoming larger models and applications, including domain-specific AI assistants and lightweight edge deployments.
+                            <br><br>
+                            This release reaffirms our commitment to transparent, efficient AI research. We extend our gratitude to the MiniMind team for their open-source contributions, enabling us to stand on the shoulders of giants.
+                            <br><br>
+                            <strong>📄 System Card Available:</strong>
+                            <a href="/GTC-2.5%20Preview%20System%20Card.pdf" target="_blank" style="color:#60a5fa;text-decoration:underline;">Download GTC-2.5 Preview System Card (PDF)</a>
+                        </div>
+                    </div>
+                </div>
 
-    <section id="developers">
-      <h2>Developers</h2>
-      <p style="color:var(--muted)">Tools, API docs, SDKs and examples to help you integrate our models.</p>
-      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:16px">
-        <div class="card" style="min-width:260px;flex:1">
-          <h3>GTC-Guard-0 API</h3>
-          <p style="color:var(--muted)">Lightweight safety classifier. Use it as a pre-filter for your LLM applications.</p>
-          <p style="margin-top:16px"><a class="btn" href="https://huggingface.co/TAI-Research/GTC-Guard-0" target="_blank">Get Started</a></p>
-        </div>
-        <div class="card" style="min-width:260px;flex:1">
-          <h3>Open Source</h3>
-          <p style="color:var(--muted)">All public repositories, model cards, and checkpoints. Contributions welcome.</p>
-          <p style="margin-top:16px"><a class="btn" href="https://github.com/LTYLeo" target="_blank">GitHub</a></p>
-        </div>
-      </div>
-    </section>
+                <!-- 原有新闻 -->
+                <div class="card news-item">
+                    <div class="news-date">2026-5-23</div>
+                    <div style="flex:1">
+                        <strong>🔥 GTC-Guard-0 Released — TAI Guardian's First Safety Model</strong>
+                        <div style="color:var(--muted);margin-top:8px">We're proud to announce GTC-Guard-0, the first model in the TAI Guardian series. This lightweight text safety classifier (under 10M parameters) is built for interpretability and CPU inference. It marks TAI Research's first step into AI alignment and content safety — building values from the first line of code. Available now on Hugging Face under MIT license.</div>
+                        <div style="margin-top:12px"><a href="https://huggingface.co/TAI-Research/GTC-Guard-0" target="_blank" class="btn outline" style="padding:6px 16px;font-size:12px">🤗 Download on Hugging Face →</a></div>
+                    </div>
+                </div>
+                <div class="card news-item">
+                    <div class="news-date">2026-4-30</div>
+                    <div style="flex:1">
+                        <strong>Introducing Sigma!</strong>
+                        <div style="color:var(--muted);margin-top:8px">After a long rest, we are now back. TAI Sigma Chat is now called Sigma.</div>
+                    </div>
+                </div>
+                <div class="card news-item">
+                    <div class="news-date">2025-11-14</div>
+                    <div style="flex:1">
+                        <strong>ESFT GTC-2 Open Source</strong>
+                        <div style="color:var(--muted);margin-top:8px">We are back after a long pause. Weights and repository published.</div>
+                    </div>
+                </div>
+                <div class="card news-item">
+                    <div class="news-date">2025-10-04</div>
+                    <div style="flex:1">
+                        <strong>Introducing Sigma Gobang 2!</strong>
+                        <div style="color:var(--muted);margin-top:8px">The previous Sigma Gobang Turbo is too slow, so we create a new one — Sigma Gobang 2.</div>
+                    </div>
+                </div>
+                <div class="card news-item">
+                    <div class="news-date">2025-10-01</div>
+                    <div style="flex:1">
+                        <strong>Introducing ESFT GTC-2!</strong>
+                        <div style="color:var(--muted);margin-top:8px">An Early Supervised Fine-Tuned GTC-2 model for improved conversational performance.</div>
+                    </div>
+                </div>
+                <div class="card news-item">
+                    <div class="news-date">2025-09-30</div>
+                    <div style="flex:1">
+                        <strong>Sigma Gobang Turbo is now available.</strong>
+                        <div style="color:var(--muted);margin-top:8px">We enhanced the algorithm of Sigma Gobang and built the Sigma Gobang Turbo.</div>
+                    </div>
+                </div>
+                <div class="card news-item">
+                    <div class="news-date">2025-09-26</div>
+                    <div style="flex:1">
+                        <strong>Introducing Sigma Gobang online!</strong>
+                        <div style="color:var(--muted);margin-top:8px">You can now access the Sigma Gobang online!</div>
+                    </div>
+                </div>
+                <div class="card news-item">
+                    <div class="news-date">2025-09-21</div>
+                    <div style="flex:1">
+                        <strong>We now offer two new models for developers: GTC-2 Large mini and GTC-2 Large nano</strong>
+                        <div style="color:var(--muted);margin-top:8px">Developers can now visit Hugging Face to download these two models. The two models have the performance of the approximate GTC-2 Large while reducing the parameter size.</div>
+                    </div>
+                </div>
+                <div class="card news-item">
+                    <div class="news-date">2025-09-20</div>
+                    <div style="flex:1">
+                        <strong>TAI Sigma Chat is now equipped with account login and conversation history.</strong>
+                        <div style="color:var(--muted);margin-top:8px">Users can explore the chat freely without an account, or choose to register and log in to unlock persistent conversation history. This marks a step forward in making TAI Sigma Chat not only a research demo, but also a growing platform for interactive intelligence.</div>
+                    </div>
+                </div>
+                <div class="card news-item">
+                    <div class="news-date">2025-09-19</div>
+                    <div style="flex:1">
+                        <strong>GTC-2 Large Base Model Launched</strong>
+                        <div style="color:var(--muted);margin-top:8px">Weights and repository published. Public beta available on the demo site.</div>
+                    </div>
+                </div>
+                <div class="card news-item">
+                    <div class="news-date">2025-09-09</div>
+                    <div style="flex:1">
+                        <strong>Multi-model switching is now available!</strong>
+                        <div style="color:var(--muted);margin-top:8px">You can now select different models and experience them.</div>
+                    </div>
+                </div>
+                <div class="card news-item">
+                    <div class="news-date">2025-09-07</div>
+                    <div style="flex:1">
+                        <strong>Introducing TAI Sigma Chat!</strong>
+                        <div style="color:var(--muted);margin-top:8px">Start using our models instantly!</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <section id="support">
-      <h2>Support</h2>
-      <p style="color:var(--muted)">TAI Research is a student-run research team. Your support helps us access compute and accelerate research.</p>
-      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:16px">
-        <div class="card" style="min-width:240px;flex:1">
-          <h3>Patron — Pro</h3>
-          <p style="color:var(--muted)">Monthly support plans to get more access and early previews.</p>
-          <p style="margin-top:16px"><a class="btn" href="https://afdian.com/a/tai_research" target="_blank">Support on AfDian</a></p>
-        </div>
-        <div class="card" style="min-width:240px;flex:1">
-          <h3>Contact</h3>
-          <p style="color:var(--muted)">TAI-Research@outlook.com</p>
-          <p style="margin-top:16px"><a class="btn outline" href="mailto:TAI-Research@outlook.com">Email Us</a></p>
-        </div>
-      </div>
-    </section>
-  </main>
+        <section id="developers">
+            <h2>Developers</h2>
+            <p style="color:var(--muted)">Tools, API docs, SDKs and examples to help you integrate our models.</p>
+            <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:16px">
+                <div class="card" style="min-width:260px;flex:1">
+                    <h3>GTC-Guard-0 API</h3>
+                    <p style="color:var(--muted)">Lightweight safety classifier. Use it as a pre-filter for your LLM applications.</p>
+                    <p style="margin-top:16px"><a class="btn" href="https://huggingface.co/TAI-Research/GTC-Guard-0" target="_blank">Get Started</a></p>
+                </div>
+                <div class="card" style="min-width:260px;flex:1">
+                    <h3>Open Source</h3>
+                    <p style="color:var(--muted)">All public repositories, model cards, and checkpoints. Contributions welcome.</p>
+                    <p style="margin-top:16px"><a class="btn" href="https://github.com/LTYLeo" target="_blank">GitHub</a></p>
+                </div>
+            </div>
+        </section>
 
-  <footer class="container">
-    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
-      <div>© TAI Research</div>
-      <div style="display:flex;gap:16px">
-        <a href="https://github.com/LTYLeo" target="_blank" style="color:var(--muted);text-decoration:none">GitHub</a>
-        <a href="https://huggingface.co/TAI-Research" target="_blank" style="color:var(--muted);text-decoration:none">Hugging Face</a>
-        <a href="https://space.bilibili.com/88158150" target="_blank" style="color:var(--muted);text-decoration:none">Bilibili</a>
-      </div>
-    </div>
-  </footer>
+        <section id="support">
+            <h2>Support</h2>
+            <p style="color:var(--muted)">TAI Research is a student-run research team. Your support helps us access compute and accelerate research.</p>
+            <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:16px">
+                <div class="card" style="min-width:240px;flex:1">
+                    <h3>Patron — Pro</h3>
+                    <p style="color:var(--muted)">Monthly support plans to get more access and early previews.</p>
+                    <p style="margin-top:16px"><a class="btn" href="https://afdian.com/a/tai_research" target="_blank">Support on AfDian</a></p>
+                </div>
+                <div class="card" style="min-width:240px;flex:1">
+                    <h3>Contact</h3>
+                    <p style="color:var(--muted)">TAI-Research@outlook.com</p>
+                    <p style="margin-top:16px"><a class="btn outline" href="mailto:TAI-Research@outlook.com">Email Us</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
 
-  <script>
-    // 模态框逻辑
-    document.addEventListener('DOMContentLoaded', function() {
-      const modal = document.getElementById('noticeModal');
-      const closeBtn = document.getElementById('closeModal');
-      
-      if (!sessionStorage.getItem('noticeClosed')) {
-        setTimeout(() => {
-          modal.style.display = 'flex';
-        }, 500);
-      }
-      
-      closeBtn.addEventListener('click', function() {
-        modal.style.display = 'none';
-        sessionStorage.setItem('noticeClosed', 'true');
-      });
-      
-      modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-          modal.style.display = 'none';
-          sessionStorage.setItem('noticeClosed', 'true');
-        }
-      });
-      
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.style.display === 'flex') {
-          modal.style.display = 'none';
-          sessionStorage.setItem('noticeClosed', 'true');
-        }
-      });
-    });
-  </script>
+    <footer class="container">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+            <div>© TAI Research</div>
+            <div style="display:flex;gap:16px">
+                <a href="https://github.com/LTYLeo" target="_blank" style="color:var(--muted);text-decoration:none">GitHub</a>
+                <a href="https://huggingface.co/TAI-Research" target="_blank" style="color:var(--muted);text-decoration:none">Hugging Face</a>
+                <a href="https://space.bilibili.com/88158150" target="_blank" style="color:var(--muted);text-decoration:none">Bilibili</a>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
