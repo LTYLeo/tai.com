@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>News · TAI Research</title>
+    <link rel="icon" href="icon.jpg" />
+    <meta name="description" content="TAI Research — News & Updates" />
+    <style>
+        /* ===== 全局继承主站风格 ===== */
+        :root {
+            --bg: #0a0c12;
+            --card: rgba(18, 22, 32, 0.75);
+            --card-border: rgba(50, 60, 85, 0.5);
+            --text: #eef2ff;
+            --muted: #a0a8c0;
+            --accent: #3b82f6;
+            --accent-glow: #6366f1;
+            --border: #1f2a3e;
+            --star-color: rgba(255, 255, 255, 0.2);
+        }
+        * { box-sizing: border-box; margin: 0; }
+        body {
+            margin: 0;
+            font-family: "Inter", "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif;
+            background: radial-gradient(ellipse at 20% 30%, #0c0f1c, #020408);
+            color: var(--text);
+            line-height: 1.5;
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        /* 星空动态层 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            background-image:
+                radial-gradient(2px 2px at 12% 34%, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 86% 22%, #f8fafc, rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 45% 72%, #ddd, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 71% 91%, #cbd5e1, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 33% 15%, white, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 95% 63%, #e2e8f0, rgba(0,0,0,0)),
+                radial-gradient(3px 2px at 7% 88%, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 62% 44%, #94a3b8, rgba(0,0,0,0));
+            background-size: 200px 200px, 300px 300px, 400px 400px, 280px 280px, 350px 350px, 220px 220px, 500px 500px, 180px 180px;
+            background-repeat: no-repeat;
+            opacity: 0.6;
+            animation: starTwinkle 8s infinite alternate;
+            z-index: 0;
+        }
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 30%, rgba(59,130,246,0.08) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        @keyframes starTwinkle { 0% { opacity: 0.4; } 100% { opacity: 0.9; } }
+
+        header, main, footer, .container, .card, .btn, nav, .logo, .hero, section { position: relative; z-index: 2; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        /* 卡片玻璃 */
+        .card {
+            background: rgba(15,20,32,0.6);
+            backdrop-filter: blur(10px);
+            padding: 20px 24px;
+            border-radius: 20px;
+            border: 1px solid rgba(50,60,85,0.4);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+            text-decoration: none;
+            color: inherit;
+            cursor: default;
+        }
+        .card:hover {
+            border-color: rgba(59,130,246,0.6);
+            transform: translateX(4px);
+            box-shadow: 0 0 30px rgba(59,130,246,0.08);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 40px;
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            color: #ffffff;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 14px;
+            border: 1px solid rgba(59,130,246,0.5);
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .btn:hover {
+            background: linear-gradient(145deg, #2d3a5e, #1e293b);
+            border-color: #60a5fa;
+            transform: scale(1.02);
+            box-shadow: 0 6px 14px rgba(59,130,246,0.25);
+        }
+        .btn.outline {
+            background: transparent;
+            border: 1px solid #4b5563;
+            color: #cbd5e6;
+        }
+        .btn.outline:hover {
+            background: rgba(59,130,246,0.15);
+            border-color: #3b82f6;
+            color: white;
+        }
+
+        header {
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(59,130,246,0.2);
+            background: rgba(8,12,22,0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 0 0 28px 28px;
+            margin-bottom: 8px;
+        }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo .mark {
+            width: 38px; height: 38px; border-radius: 12px; overflow: hidden;
+            box-shadow: 0 0 0 1px #3b82f6;
+        }
+        .logo .mark img { width: 100%; height: 100%; object-fit: cover; }
+        nav a {
+            color: #cbd5e6; text-decoration: none; margin-left: 28px;
+            font-weight: 500; font-size: 14px; transition: 0.2s;
+        }
+        nav a:hover { color: #ffffff; text-shadow: 0 0 5px #3b82f6; }
+
+        section { padding: 48px 0; border-bottom: 1px solid rgba(59,130,246,0.15); }
+        h1 {
+            font-size: 48px; font-weight: 800;
+            background: linear-gradient(135deg, #FFFFFF, #A5B4FC, #60A5FA, #C084FC);
+            background-size: 300% 300%;
+            -webkit-background-clip: text; background-clip: text;
+            color: transparent;
+            animation: gradientShift 5s ease infinite;
+            letter-spacing: -0.02em;
+            margin: 0 0 12px 0;
+        }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .muted { color: var(--muted); }
+
+        footer {
+            padding: 32px 0; color: #7f8cae; font-size: 14px;
+            border-top: 1px solid rgba(59,130,246,0.2); margin-top: 10px;
+        }
+        footer a { color: #8ba0d0; transition: 0.2s; text-decoration: none; }
+        footer a:hover { color: white; }
+        ::-webkit-scrollbar { width: 8px; background: #11161f; }
+        ::-webkit-scrollbar-thumb { background: #2d3a52; border-radius: 8px; }
+
+        /* 新闻列表 */
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 28px;
+        }
+        .news-item {
+            background: rgba(15,20,32,0.6);
+            backdrop-filter: blur(4px);
+            border-radius: 20px;
+            padding: 20px 24px;
+            border: 1px solid rgba(50,60,85,0.4);
+            transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 16px;
+            cursor: default;
+            text-decoration: none;
+            color: inherit;
+        }
+        .news-item:hover {
+            border-color: rgba(59,130,246,0.5);
+            transform: translateX(4px);
+            box-shadow: 0 0 30px rgba(59,130,246,0.06);
+        }
+        .news-item .meta {
+            min-width: 110px;
+            color: #7f8cae;
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+        .news-item .meta .date {
+            color: #60a5fa;
+            font-weight: 500;
+        }
+        .news-item .content { flex: 1; min-width: 200px; }
+        .news-item .content .title {
+            font-weight: 600;
+            font-size: 18px;
+            color: #eef2ff;
+            margin-bottom: 6px;
+        }
+        .news-item .content .desc {
+            color: #b0bacf;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .news-item .content .desc a {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+        .news-item .content .desc a:hover {
+            text-decoration: underline;
+        }
+        .news-item .content .link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #60a5fa;
+            font-size: 13px;
+            text-decoration: none;
+            border: 1px solid rgba(59,130,246,0.3);
+            border-radius: 30px;
+            padding: 4px 16px;
+            transition: 0.2s;
+        }
+        .news-item .content .link:hover {
+            background: rgba(59,130,246,0.12);
+            border-color: #3b82f6;
+        }
+
+        @media (max-width: 700px) {
+            .news-item { flex-direction: column; }
+            .news-item .meta { min-width: unset; flex-direction: row; flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="container">
+    <div class="logo">
+        <div class="mark"><img src="icon.jpg" alt="TAI Research Logo"></div>
+        <div>
+            <div style="font-weight:700; color:#ffffff;">TAI Research</div>
+            <small style="color:var(--muted)">Building the Future of Intelligence</small>
+        </div>
+    </div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="research.html">Research</a>
+        <a href="news.html" style="color:#ffffff;">News</a>
+        <a href="#support">Support</a>
+    </nav>
+</header>
+
+<main class="container">
+
+    <!-- 页面标题 -->
+    <section style="border-bottom: none; padding-bottom: 0;">
+        <h1>News</h1>
+        <p class="muted" style="font-size: 18px; max-width: 700px;">Latest updates, releases, and announcements from TAI Research.</p>
+    </section>
+
+    <!-- 新闻列表 -->
+    <section style="padding-top: 24px;">
+        <div class="news-list">
+
+            <!-- 2026-07-29 GTC-2.5 & GTC-2.5 mini -->
+            <div class="news-item">
+                <div class="meta">
+                    <span class="date">2026-07-29</span>
+                </div>
+                <div class="content">
+                    <div class="title">🚀 GTC-2.5 &amp; GTC-2.5 mini Released — The Foundation is Set</div>
+                    <div class="desc">
+                        We are thrilled to announce the release of <strong>GTC-2.5</strong>, our most capable production-ready foundation model to date, alongside <strong>GTC-2.5 mini</strong>, a lightweight open-source variant for the community.
+                        <br><br>
+                        At <strong>400 million parameters</strong>, GTC-2.5 represents a significant scale-up from our earlier 64M Preview models. Trained on a curated 19GB dataset combining high-quality Chinese and English text, code, and mathematical content, it delivers substantially improved coherence, knowledge retention, and instruction-following capabilities.
+                        <br><br>
+                        GTC-2.5 mini (64M parameters) is now available under a permissive license on Hugging Face and GitHub — perfect for research, experimentation, and lightweight edge applications.
+                        <br><br>
+                        This release marks the end of the "Preview" era for GTC and the beginning of a more mature, product-oriented phase.
+                        <br><br>
+                        <a href="./Research/gtc-2.5.html" class="link">📖 Read full article →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2026-07-29 GTC-2.5o -->
+            <div class="news-item">
+                <div class="meta">
+                    <span class="date">2026-07-29</span>
+                </div>
+                <div class="content">
+                    <div class="title">🔄 GTC-2.5o Preview — Expanding the Horizon with Full-Modal Understanding</div>
+                    <div class="desc">
+                        We are excited to introduce <strong>GTC-2.5o</strong>, the first truly multimodal member of the GTC family. Built on the GTC-2.5 foundation, GTC-2.5o extends with <strong>full multimodal capabilities</strong> — text, image, and audio understanding — in a unified model.
+                        <br><br>
+                        Integrating vision and audio encoders directly into the 64M-parameter backbone, GTC-2.5o supports image captioning, visual question answering, audio comprehension, and cross-modal reasoning. It validates TAI Research's multimodal pipeline and serves as a baseline for larger vision-language-audio models.
+                        <br><br>
+                        The model is currently in early preview, available to Pro users on Sigma. We are actively collecting feedback and plan to iterate rapidly.
+                        <br><br>
+                        <a href="./Research/gtc-2.5o.html" class="link">📖 Read full article →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2026-07-14 GTC-2.5V Preview -->
+            <div class="news-item">
+                <div class="meta">
+                    <span class="date">2026-07-14</span>
+                </div>
+                <div class="content">
+                    <div class="title">🖼️ GTC-2.5V Preview Released — TAI Research's First Vision-Language Model</div>
+                    <div class="desc">
+                        We are excited to announce the release of GTC-2.5V Preview, the first vision-language foundation model developed by TAI Research. Extending the GTC series with multimodal capabilities, this 64M-parameter model integrates a lightweight visual encoder with a decoder-only language backbone, trained end-to-end on a V100 32G GPU.
+                        <br><br>
+                        GTC-2.5V Preview demonstrates foundational capabilities in image captioning, visual question answering, and text reading from images. While it is a compact research preview, it serves as a baseline for our upcoming larger vision-language models and downstream applications, including multimodal agents and Computer Use scenarios.
+                        <br><br>
+                        This release reaffirms our commitment to transparent, efficient AI research across modalities. We extend our gratitude to the MiniMind-V team for their open-source contributions, enabling us to explore multimodal AI efficiently.
+                        <br><br>
+                        <strong>📄 System Card Available:</strong>
+                        <a href="./GTC-2.5V%20Preview%20System%20Card.pdf" target="_blank">Download GTC-2.5V Preview System Card (PDF)</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2026-07-03 GTC-2.5 Preview -->
+            <div class="news-item">
+                <div class="meta">
+                    <span class="date">2026-07-03</span>
+                </div>
+                <div class="content">
+                    <div class="title">🚀 GTC-2.5 Preview Released — TAI Research's First Conversational Foundation Model</div>
+                    <div class="desc">
+                        We are excited to announce the release of GTC-2.5 Preview, the first conversational foundation model developed by TAI Research. Built upon the open-source MiniMind project and trained on a V100 GPU, this 64M-parameter model marks a critical milestone in validating our technical pipeline.
+                        <br><br>
+                        GTC-2.5 Preview demonstrates foundational capabilities in dialogue, knowledge retrieval, and code generation. While it is a compact research preview, it serves as a baseline for our upcoming larger models and applications, including domain-specific AI assistants and lightweight edge deployments.
+                        <br><br>
+                        This release reaffirms our commitment to transparent, efficient AI research. We extend our gratitude to the MiniMind team for their open-source contributions, enabling us to stand on the shoulders of giants.
+                        <br><br>
+                        <strong>📄 System Card Available:</strong>
+                        <a href="./GTC-2.5%20Preview%20System%20Card.pdf" target="_blank">Download GTC-2.5 Preview System Card (PDF)</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2026-05-23 GTC-Guard-0 -->
+            <div class="news-item">
+                <div class="meta">
+                    <span class="date">2026-05-23</span>
+                </div>
+                <div class="content">
+                    <div class="title">🔥 GTC-Guard-0 Released — TAI Guardian's First Safety Model</div>
+                    <div class="desc">
+                        We're proud to announce GTC-Guard-0, the first model in the TAI Guardian series. This lightweight text safety classifier (under 10M parameters) is built for interpretability and CPU inference. It marks TAI Research's first step into AI alignment and content safety — building values from the first line of code. Available now on Hugging Face under MIT license.
+                        <br><br>
+                        <a href="https://huggingface.co/TAI-Research/GTC-Guard-0" target="_blank" class="link">🤗 Download on Hugging Face →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2026-04-30 Sigma -->
+            <div class="news-item">
+                <div class="meta">
+                    <span class="date">2026-04-30</span>
+                </div>
+                <div class="content">
+                    <div class="title">Introducing Sigma!</div>
+                    <div class="desc">After a long rest, we are now back. TAI Sigma Chat is now called Sigma.</div>
+                </div>
+            </div>
+
+            <!-- 2025-11-14 ESFT GTC-2 -->
+            <div class="news-item">
+                <div class="meta">
+                    <span class="date">2025-11-14</span>
+                </div>
+                <div class="content">
+                    <div class="title">ESFT GTC-2 Open Source</div>
+                    <div class="desc">We are back after a long pause. Weights and repository published.</div>
+                </div>
+            </div>
+
+            <!-- 2025-10-04 Sigma Gobang 2 -->
+            <div class="news-item">
+                <div class="meta">
+                    <span class="date">2025-10-04</span>
+                </div>
+                <div class="content">
+                    <div class="title">Introducing Sigma Gobang 2!</div>
+                    <div class="desc">The previous Sigma Gobang Turbo is too slow, so we create a new one — Sigma Gobang 2.</div>
+                </div>
+            </div>
+
+            <!-- 2025-10-01 ESFT GTC-2 -->
+            <div class="news-item">
+                <div class="meta">
+                    <span class="date">2025-10-01</span>
+                </div>
+                <div class="content">
+                    <div class="title">Introducing ESFT GTC-2!</div>
+                    <div class="desc">An Early Supervised Fine-Tuned GTC-2 model for improved conversational performance.</div>
+                </div>
+            </div>
+
+            <!-- 2025-09-30 Sigma Gobang Turbo -->
+            <div class="news-item">
+                <div class="meta">
+                    <span class="date">2025-09-30</span>
+                </div>
+                <div class="content">
+                    <div class="title">Sigma Gobang Turbo is now available.</div>
+                    <div class="desc">We enhanced the algorithm of Sigma Gobang and built the Sigma Gobang Turbo.</div>
+                </div>
+            </div>
+
+            <!-- 2025-09-26 Sigma Gobang online -->
+            <div class="news-item">
+                <div class="meta">
+                    <span class="date">2025-09-26</span>
+                </div>
+                <div class="content">
+                    <div class="title">Introducing Sigma Gobang online!</div>
+                    <div class="desc">You can now access the Sigma Gobang online!</div>
+                </div>
+            </div>
+
+            <!-- 2025-09-21 GTC-2 Large mini/nano -->
+            <div class="news-item">
+                <div class="meta">
+                    <span class="date">2025-09-21</span>
+                </div>
+                <div class="content">
+                    <div class="title">We now offer two new models for developers: GTC-2 Large mini and GTC-2 Large nano</div>
+                    <div class="desc">Developers can now visit Hugging Face to download these two models. The two models have the performance of the approximate GTC-2 Large while reducing the parameter size.</div>
+                </div>
+            </div>
+
+            <!-- 2025-09-20 TAI Sigma Chat login -->
+            <div class="news-item">
+                <div class="meta">
+                    <span class="date">2025-09-20</span>
+                </div>
+                <div class="content">
+                    <div class="title">TAI Sigma Chat is now equipped with account login and conversation history.</div>
+                    <div class="desc">Users can explore the chat freely without an account, or choose to register and log in to unlock persistent conversation history. This marks a step forward in making TAI Sigma Chat not only a research demo, but also a growing platform for interactive intelligence.</div>
+                </div>
+            </div>
+
+            <!-- 2025-09-19 GTC-2 Large Base -->
+            <div class="news-item">
+                <div class="meta">
+                    <span class="date">2025-09-19</span>
+                </div>
+                <div class="content">
+                    <div class="title">GTC-2 Large Base Model Launched</div>
+                    <div class="desc">Weights and repository published. Public beta available on the demo site.</div>
+                </div>
+            </div>
+
+            <!-- 2025-09-09 Multi-model switching -->
+            <div class="news-item">
+                <div class="meta">
+                    <span class="date">2025-09-09</span>
+                </div>
+                <div class="content">
+                    <div class="title">Multi-model switching is now available!</div>
+                    <div class="desc">You can now select different models and experience them.</div>
+                </div>
+            </div>
+
+            <!-- 2025-09-07 TAI Sigma Chat -->
+            <div class="news-item">
+                <div class="meta">
+                    <span class="date">2025-09-07</span>
+                </div>
+                <div class="content">
+                    <div class="title">Introducing TAI Sigma Chat!</div>
+                    <div class="desc">Start using our models instantly!</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 导航 -->
+    <section style="border-bottom: none; padding-top: 24px;">
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+            <a href="index.html" class="btn outline" style="padding: 8px 24px;">← Back to Home</a>
+            <a href="products.html" class="btn outline" style="padding: 8px 24px;">Products</a>
+            <a href="research.html" class="btn outline" style="padding: 8px 24px;">Research</a>
+        </div>
+    </section>
+
+</main>
+
+<footer class="container">
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+        <div>© TAI Research · News</div>
+        <div style="display:flex; gap:16px;">
+            <a href="https://github.com/LTYLeo" target="_blank">GitHub</a>
+            <a href="https://huggingface.co/TAI-Research" target="_blank">Hugging Face</a>
+            <a href="https://space.bilibili.com/88158150" target="_blank">Bilibili</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

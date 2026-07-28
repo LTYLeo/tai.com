@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Research · TAI Research</title>
+    <link rel="icon" href="icon.jpg" />
+    <meta name="description" content="TAI Research — Public Research Projects" />
+    <style>
+        /* ===== 全局继承主站风格 ===== */
+        :root {
+            --bg: #0a0c12;
+            --card: rgba(18, 22, 32, 0.75);
+            --card-border: rgba(50, 60, 85, 0.5);
+            --text: #eef2ff;
+            --muted: #a0a8c0;
+            --accent: #3b82f6;
+            --accent-glow: #6366f1;
+            --border: #1f2a3e;
+            --star-color: rgba(255, 255, 255, 0.2);
+        }
+        * { box-sizing: border-box; margin: 0; }
+        body {
+            margin: 0;
+            font-family: "Inter", "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif;
+            background: radial-gradient(ellipse at 20% 30%, #0c0f1c, #020408);
+            color: var(--text);
+            line-height: 1.5;
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        /* 星空动态层 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            background-image:
+                radial-gradient(2px 2px at 12% 34%, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 86% 22%, #f8fafc, rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 45% 72%, #ddd, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 71% 91%, #cbd5e1, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 33% 15%, white, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 95% 63%, #e2e8f0, rgba(0,0,0,0)),
+                radial-gradient(3px 2px at 7% 88%, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 62% 44%, #94a3b8, rgba(0,0,0,0));
+            background-size: 200px 200px, 300px 300px, 400px 400px, 280px 280px, 350px 350px, 220px 220px, 500px 500px, 180px 180px;
+            background-repeat: no-repeat;
+            opacity: 0.6;
+            animation: starTwinkle 8s infinite alternate;
+            z-index: 0;
+        }
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 30%, rgba(59,130,246,0.08) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        @keyframes starTwinkle { 0% { opacity: 0.4; } 100% { opacity: 0.9; } }
+
+        header, main, footer, .container, .card, .btn, nav, .logo, .hero, section { position: relative; z-index: 2; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        /* 卡片玻璃 */
+        .card {
+            background: var(--card);
+            backdrop-filter: blur(10px);
+            padding: 24px;
+            border-radius: 20px;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            transition: transform 0.2s ease, border-color 0.2s;
+        }
+        .card:hover { border-color: rgba(59,130,246,0.6); transform: translateY(-2px); }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 40px;
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            color: #ffffff;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 14px;
+            border: 1px solid rgba(59,130,246,0.5);
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .btn:hover {
+            background: linear-gradient(145deg, #2d3a5e, #1e293b);
+            border-color: #60a5fa;
+            transform: scale(1.02);
+            box-shadow: 0 6px 14px rgba(59,130,246,0.25);
+        }
+        .btn.outline {
+            background: transparent;
+            border: 1px solid #4b5563;
+            color: #cbd5e6;
+        }
+        .btn.outline:hover {
+            background: rgba(59,130,246,0.15);
+            border-color: #3b82f6;
+            color: white;
+        }
+
+        header {
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(59,130,246,0.2);
+            background: rgba(8,12,22,0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 0 0 28px 28px;
+            margin-bottom: 8px;
+        }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo .mark {
+            width: 38px; height: 38px; border-radius: 12px; overflow: hidden;
+            box-shadow: 0 0 0 1px #3b82f6;
+        }
+        .logo .mark img { width: 100%; height: 100%; object-fit: cover; }
+        nav a {
+            color: #cbd5e6; text-decoration: none; margin-left: 28px;
+            font-weight: 500; font-size: 14px; transition: 0.2s;
+        }
+        nav a:hover { color: #ffffff; text-shadow: 0 0 5px #3b82f6; }
+
+        section { padding: 48px 0; border-bottom: 1px solid rgba(59,130,246,0.15); }
+        h1 {
+            font-size: 48px; font-weight: 800;
+            background: linear-gradient(135deg, #FFFFFF, #A5B4FC, #60A5FA, #C084FC);
+            background-size: 300% 300%;
+            -webkit-background-clip: text; background-clip: text;
+            color: transparent;
+            animation: gradientShift 5s ease infinite;
+            letter-spacing: -0.02em;
+            margin: 0 0 12px 0;
+        }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .muted { color: var(--muted); }
+
+        footer {
+            padding: 32px 0; color: #7f8cae; font-size: 14px;
+            border-top: 1px solid rgba(59,130,246,0.2); margin-top: 10px;
+        }
+        footer a { color: #8ba0d0; transition: 0.2s; text-decoration: none; }
+        footer a:hover { color: white; }
+        ::-webkit-scrollbar { width: 8px; background: #11161f; }
+        ::-webkit-scrollbar-thumb { background: #2d3a52; border-radius: 8px; }
+
+        /* 研究列表 —— 整张卡片可点击跳转 */
+        .research-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 28px;
+        }
+        .research-item {
+            background: rgba(15,20,32,0.6);
+            backdrop-filter: blur(4px);
+            border-radius: 20px;
+            padding: 20px 24px;
+            border: 1px solid rgba(50,60,85,0.4);
+            transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 16px;
+            cursor: default;
+            text-decoration: none;
+            color: inherit;
+        }
+        .research-item .meta {
+            min-width: 110px;
+            color: #7f8cae;
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+        .research-item .meta .date { color: #60a5fa; font-weight: 500; }
+        .research-item .content { flex: 1; min-width: 200px; }
+        .research-item .content .title {
+            font-weight: 600;
+            font-size: 18px;
+            color: #eef2ff;
+            margin-bottom: 6px;
+        }
+        .research-item .content .desc {
+            color: #b0bacf;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* 可点击样式 */
+        .research-item.clickable {
+            cursor: pointer;
+        }
+        .research-item.clickable:hover {
+            border-color: rgba(59,130,246,0.6);
+            transform: translateX(4px);
+            box-shadow: 0 0 30px rgba(59,130,246,0.08);
+        }
+        .research-item.clickable .title::after {
+            content: " →";
+            color: #3b82f6;
+            font-weight: 400;
+            opacity: 0.6;
+        }
+        .research-item.clickable:hover .title::after {
+            opacity: 1;
+        }
+
+        /* 不可点击的占位项样式 */
+        .research-item.placeholder {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .research-item.placeholder .content .title {
+            color: #7f8cae;
+        }
+
+        @media (max-width: 700px) {
+            .research-item { flex-direction: column; }
+            .research-item .meta { min-width: unset; flex-direction: row; flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="container">
+    <div class="logo">
+        <div class="mark"><img src="icon.jpg" alt="TAI Research Logo"></div>
+        <div>
+            <div style="font-weight:700; color:#ffffff;">TAI Research</div>
+            <small style="color:var(--muted)">Building the Future of Intelligence</small>
+        </div>
+    </div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="research.html" style="color:#ffffff;">Research</a>
+        <a href="news.html">News</a>
+        <a href="#support">Support</a>
+    </nav>
+</header>
+
+<main class="container">
+
+    <!-- 页面标题 -->
+    <section style="border-bottom: none; padding-bottom: 0;">
+        <h1>Research</h1>
+        <p class="muted" style="font-size: 18px; max-width: 700px;">Public research projects, papers, model releases, and technical reports.</p>
+    </section>
+
+    <!-- 研究项目列表 -->
+    <section style="padding-top: 24px;">
+        <div class="research-list">
+
+            <!-- GTC-2.5 & GTC-2.5 mini —— 可点击跳转 -->
+            <a href="./Research/gtc-2.5.html" class="research-item clickable">
+                <div class="meta">
+                    <span class="date">2026-07-29</span>
+                </div>
+                <div class="content">
+                    <div class="title">GTC-2.5 &amp; GTC-2.5 mini — The Foundation is Set</div>
+                    <div class="desc">400M parameter production-ready foundation model alongside lightweight 64M open-source variant. Validates full training pipeline from data to deployment.</div>
+                </div>
+            </a>
+
+            <!-- GTC-2.5o —— 可点击跳转 -->
+            <a href="./Research/gtc-2.5o.html" class="research-item clickable">
+                <div class="meta">
+                    <span class="date">2026-07-29</span>
+                </div>
+                <div class="content">
+                    <div class="title">GTC-2.5o — Expanding the Horizon</div>
+                    <div class="desc">First truly multimodal GTC model. Integrates vision and audio encoders with 0.1B backbone for image captioning, VQA, audio comprehension, and cross-modal reasoning.</div>
+                </div>
+            </a>
+
+            <!-- GTC-2.5V Preview —— 可点击跳转 -->
+            <a href="./Research/gtc-2.5v-preview.html" class="research-item clickable">
+                <div class="meta">
+                    <span class="date">2026-07-14</span>
+                </div>
+                <div class="content">
+                    <div class="title">GTC-2.5V Preview — Vision-Language Foundation Model</div>
+                    <div class="desc">First vision-language model from TAI Research. 64M parameters, visual encoder + decoder-only backbone. Capabilities: image captioning, VQA, text reading.</div>
+                </div>
+            </a>
+
+            <!-- GTC-2.5 Preview —— 可点击跳转 -->
+            <a href="./Research/gtc-2.5-preview.html" class="research-item clickable">
+                <div class="meta">
+                    <span class="date">2026-07-03</span>
+                </div>
+                <div class="content">
+                    <div class="title">GTC-2.5 Preview — Conversational Foundation Model</div>
+                    <div class="desc">First conversational foundation model. 64M parameters, built on MiniMind. Demonstrates dialogue, knowledge retrieval, code generation.</div>
+                </div>
+            </a>
+
+            <!-- GTC-Guard-0 —— 占位，不可点击 -->
+            <div class="research-item placeholder">
+                <div class="meta">
+                    <span class="date">2026-05-23</span>
+                </div>
+                <div class="content">
+                    <div class="title">GTC-Guard-0 — TAI Guardian First Release</div>
+                    <div class="desc">Lightweight text safety classifier (&lt;10M params). Built for interpretability and CPU inference. MIT license.</div>
+                </div>
+            </div>
+
+            <!-- ESFT GTC-2 —— 占位 -->
+            <div class="research-item placeholder">
+                <div class="meta">
+                    <span class="date">2025-11-14</span>
+                </div>
+                <div class="content">
+                    <div class="title">ESFT GTC-2 — Early Supervised Fine-Tuning</div>
+                    <div class="desc">Improved conversational performance via early supervised fine-tuning. Weights and repository published.</div>
+                </div>
+            </div>
+
+            <!-- GTC-2 Large Base —— 占位 -->
+            <div class="research-item placeholder">
+                <div class="meta">
+                    <span class="date">2025-09-19</span>
+                </div>
+                <div class="content">
+                    <div class="title">GTC-2 Large Base Model</div>
+                    <div class="desc">Public beta release of the GTC-2 Large base model. Weights and repository published.</div>
+                </div>
+            </div>
+
+            <!-- GTC-2 Large mini / nano —— 占位 -->
+            <div class="research-item placeholder">
+                <div class="meta">
+                    <span class="date">2025-09-21</span>
+                </div>
+                <div class="content">
+                    <div class="title">GTC-2 Large mini &amp; nano</div>
+                    <div class="desc">Lightweight variants with performance close to GTC-2 Large but reduced parameter size.</div>
+                </div>
+            </div>
+
+            <!-- Sigma Gobang AI —— 占位 -->
+            <div class="research-item placeholder">
+                <div class="meta">
+                    <span class="date">2025-10-04</span>
+                </div>
+                <div class="content">
+                    <div class="title">Sigma Gobang 2 — AI for Gomoku</div>
+                    <div class="desc">Enhanced algorithm with multiple difficulty levels. Successor to Sigma Gobang Turbo.</div>
+                </div>
+            </div>
+
+            <!-- 对齐研究 —— 占位 -->
+            <div class="research-item placeholder">
+                <div class="meta">
+                    <span class="date">2026-06-01</span>
+                </div>
+                <div class="content">
+                    <div class="title">TAI Alignment Lab — Value Alignment &amp; Interpretability</div>
+                    <div class="desc">Ongoing research on AI value alignment, mechanistic interpretability, and safety guardrails.</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 导航 -->
+    <section style="border-bottom: none; padding-top: 24px;">
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+            <a href="index.html" class="btn outline" style="padding: 8px 24px;">← Back to Home</a>
+            <a href="products.html" class="btn outline" style="padding: 8px 24px;">Products</a>
+            <a href="news.html" class="btn outline" style="padding: 8px 24px;">News</a>
+        </div>
+    </section>
+
+</main>
+
+<footer class="container">
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+        <div>© TAI Research · Research</div>
+        <div style="display:flex; gap:16px;">
+            <a href="https://github.com/LTYLeo" target="_blank">GitHub</a>
+            <a href="https://huggingface.co/TAI-Research" target="_blank">Hugging Face</a>
+            <a href="https://space.bilibili.com/88158150" target="_blank">Bilibili</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

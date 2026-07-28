@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GTC-2.5 Preview · TAI Research</title>
+    <link rel="icon" href="../icon.jpg" />
+    <meta name="description" content="GTC-2.5 Preview — TAI Research's First Conversational Foundation Model" />
+    <style>
+        /* ===== 全局继承主站风格 ===== */
+        :root {
+            --bg: #0a0c12;
+            --card: rgba(18, 22, 32, 0.75);
+            --card-border: rgba(50, 60, 85, 0.5);
+            --text: #eef2ff;
+            --muted: #a0a8c0;
+            --accent: #3b82f6;
+            --accent-glow: #6366f1;
+            --border: #1f2a3e;
+            --star-color: rgba(255, 255, 255, 0.2);
+        }
+        * { box-sizing: border-box; margin: 0; }
+        body {
+            margin: 0;
+            font-family: "Inter", "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif;
+            background: radial-gradient(ellipse at 20% 30%, #0c0f1c, #020408);
+            color: var(--text);
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        /* 星空动态层 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            background-image:
+                radial-gradient(2px 2px at 12% 34%, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 86% 22%, #f8fafc, rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 45% 72%, #ddd, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 71% 91%, #cbd5e1, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 33% 15%, white, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 95% 63%, #e2e8f0, rgba(0,0,0,0)),
+                radial-gradient(3px 2px at 7% 88%, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 62% 44%, #94a3b8, rgba(0,0,0,0));
+            background-size: 200px 200px, 300px 300px, 400px 400px, 280px 280px, 350px 350px, 220px 220px, 500px 500px, 180px 180px;
+            background-repeat: no-repeat;
+            opacity: 0.6;
+            animation: starTwinkle 8s infinite alternate;
+            z-index: 0;
+        }
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 30%, rgba(59,130,246,0.08) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        @keyframes starTwinkle { 0% { opacity: 0.4; } 100% { opacity: 0.9; } }
+
+        header, main, footer, .container, .card, .btn, nav, .logo, section { position: relative; z-index: 2; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        /* 卡片玻璃质感 */
+        .card {
+            background: rgba(15,20,32,0.6);
+            backdrop-filter: blur(10px);
+            padding: 32px 36px;
+            border-radius: 24px;
+            border: 1px solid rgba(50,60,85,0.4);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 40px;
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            color: #ffffff;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 14px;
+            border: 1px solid rgba(59,130,246,0.5);
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .btn:hover {
+            background: linear-gradient(145deg, #2d3a5e, #1e293b);
+            border-color: #60a5fa;
+            transform: scale(1.02);
+            box-shadow: 0 6px 14px rgba(59,130,246,0.25);
+        }
+        .btn.outline {
+            background: transparent;
+            border: 1px solid #4b5563;
+            color: #cbd5e6;
+        }
+        .btn.outline:hover {
+            background: rgba(59,130,246,0.15);
+            border-color: #3b82f6;
+            color: white;
+        }
+
+        header {
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(59,130,246,0.2);
+            background: rgba(8,12,22,0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 0 0 28px 28px;
+            margin-bottom: 8px;
+        }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo .mark {
+            width: 38px; height: 38px; border-radius: 12px; overflow: hidden;
+            box-shadow: 0 0 0 1px #3b82f6;
+        }
+        .logo .mark img { width: 100%; height: 100%; object-fit: cover; }
+        nav a {
+            color: #cbd5e6; text-decoration: none; margin-left: 28px;
+            font-weight: 500; font-size: 14px; transition: 0.2s;
+        }
+        nav a:hover { color: #ffffff; text-shadow: 0 0 5px #3b82f6; }
+
+        section { padding: 48px 0; border-bottom: 1px solid rgba(59,130,246,0.15); }
+        h1 {
+            font-size: 42px; font-weight: 800;
+            background: linear-gradient(135deg, #FFFFFF, #A5B4FC, #60A5FA, #C084FC);
+            background-size: 300% 300%;
+            -webkit-background-clip: text; background-clip: text;
+            color: transparent;
+            animation: gradientShift 5s ease infinite;
+            letter-spacing: -0.02em;
+            margin: 0 0 8px 0;
+        }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .subtitle {
+            font-size: 20px;
+            color: #a0a8c0;
+            font-weight: 400;
+            margin-bottom: 24px;
+        }
+        .muted { color: var(--muted); }
+        .article-meta {
+            color: #7f8cae;
+            font-size: 14px;
+            margin-bottom: 24px;
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .article-meta span { color: #60a5fa; }
+
+        .article-body {
+            color: #d0d8ec;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        .article-body p { margin-bottom: 16px; }
+        .article-body strong { color: #eef2ff; }
+
+        .divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #6366f1);
+            border-radius: 4px;
+            margin: 20px 0 28px 0;
+        }
+
+        footer {
+            padding: 32px 0; color: #7f8cae; font-size: 14px;
+            border-top: 1px solid rgba(59,130,246,0.2); margin-top: 10px;
+        }
+        footer a { color: #8ba0d0; transition: 0.2s; text-decoration: none; }
+        footer a:hover { color: white; }
+        ::-webkit-scrollbar { width: 8px; background: #11161f; }
+        ::-webkit-scrollbar-thumb { background: #2d3a52; border-radius: 8px; }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #60a5fa;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+        .back-link:hover { color: white; }
+        .back-link::before { content: "← "; }
+
+        .tag {
+            display: inline-block;
+            background: rgba(59,130,246,0.15);
+            border: 1px solid rgba(59,130,246,0.3);
+            border-radius: 30px;
+            padding: 2px 14px;
+            font-size: 12px;
+            color: #60a5fa;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<header class="container">
+    <div class="logo">
+        <div class="mark"><img src="../icon.jpg" alt="TAI Research Logo"></div>
+        <div>
+            <div style="font-weight:700; color:#ffffff;">TAI Research</div>
+            <small style="color:var(--muted)">Building the Future of Intelligence</small>
+        </div>
+    </div>
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="../products.html">Products</a>
+        <a href="../research.html">Research</a>
+        <a href="../news.html">News</a>
+    </nav>
+</header>
+
+<main class="container">
+
+    <section style="border-bottom: none; padding-top: 24px; padding-bottom: 24px;">
+        <a href="../research.html" class="back-link">Back to Research</a>
+
+        <div class="card">
+            <span class="tag">Model Release</span>
+            <span class="tag" style="background:rgba(251,191,36,0.12); border-color:rgba(251,191,36,0.25); color:#fbbf24;">Preview</span>
+            <div style="margin-top:12px;">
+                <h1>GTC-2.5 Preview</h1>
+                <div class="subtitle">TAI Research's First Conversational Foundation Model</div>
+            </div>
+
+            <div class="article-meta">
+                <span>📅 July 3, 2026</span>
+                <span>🔬 64M Parameters</span>
+                <span>🏷️ Conversational AI</span>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="article-body">
+
+                <p><strong>GTC-2.5 Preview</strong> is the first conversational foundation model released by TAI Research. Built upon the open‑source MiniMind project and trained on a V100 GPU, this 64M‑parameter model serves as a validation of our training pipeline and a baseline for subsequent larger models.</p>
+
+                <p>The model demonstrates foundational capabilities in dialogue, knowledge retrieval, and code generation. While it is a compact research preview, it establishes a reference point for future iterations and downstream applications, including domain‑specific assistants and lightweight edge deployments.</p>
+
+                <p>We extend our gratitude to the MiniMind team for their open‑source contributions.</p>
+
+                <p style="margin-top:24px;">
+                    <a href="../GTC-2.5%20Preview%20System%20Card.pdf" target="_blank" class="btn" style="padding:10px 24px; font-size:14px;">📄 Download System Card (PDF)</a>
+                </p>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 导航 -->
+    <section style="border-bottom: none; padding-top: 16px; padding-bottom: 24px;">
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+            <a href="../index.html" class="btn outline" style="padding: 8px 24px;">← Back to Home</a>
+            <a href="../research.html" class="btn outline" style="padding: 8px 24px;">All Research</a>
+            <a href="../news.html" class="btn outline" style="padding: 8px 24px;">News</a>
+        </div>
+    </section>
+
+</main>
+
+<footer class="container">
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+        <div>© TAI Research · GTC-2.5 Preview</div>
+        <div style="display:flex; gap:16px;">
+            <a href="https://github.com/LTYLeo" target="_blank">GitHub</a>
+            <a href="https://huggingface.co/TAI-Research" target="_blank">Hugging Face</a>
+            <a href="https://space.bilibili.com/88158150" target="_blank">Bilibili</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

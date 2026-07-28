@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GTC Series · TAI Research</title>
+    <link rel="icon" href="../icon.jpg" />
+    <meta name="description" content="GTC Series — Generative Trained Core foundation models from TAI Research" />
+    <style>
+        /* ===== 全局继承主站风格 ===== */
+        :root {
+            --bg: #0a0c12;
+            --card: rgba(18, 22, 32, 0.75);
+            --card-border: rgba(50, 60, 85, 0.5);
+            --text: #eef2ff;
+            --muted: #a0a8c0;
+            --accent: #3b82f6;
+            --accent-glow: #6366f1;
+            --border: #1f2a3e;
+            --star-color: rgba(255, 255, 255, 0.2);
+        }
+        * { box-sizing: border-box; margin: 0; }
+        body {
+            margin: 0;
+            font-family: "Inter", "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif;
+            background: radial-gradient(ellipse at 20% 30%, #0c0f1c, #020408);
+            color: var(--text);
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        /* 星空动态层 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            background-image:
+                radial-gradient(2px 2px at 12% 34%, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 86% 22%, #f8fafc, rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 45% 72%, #ddd, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 71% 91%, #cbd5e1, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 33% 15%, white, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 95% 63%, #e2e8f0, rgba(0,0,0,0)),
+                radial-gradient(3px 2px at 7% 88%, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 62% 44%, #94a3b8, rgba(0,0,0,0));
+            background-size: 200px 200px, 300px 300px, 400px 400px, 280px 280px, 350px 350px, 220px 220px, 500px 500px, 180px 180px;
+            background-repeat: no-repeat;
+            opacity: 0.6;
+            animation: starTwinkle 8s infinite alternate;
+            z-index: 0;
+        }
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 30%, rgba(59,130,246,0.08) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        @keyframes starTwinkle { 0% { opacity: 0.4; } 100% { opacity: 0.9; } }
+
+        header, main, footer, .container, .card, .btn, nav, .logo, section { position: relative; z-index: 2; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        /* 卡片玻璃质感 */
+        .card {
+            background: rgba(15,20,32,0.6);
+            backdrop-filter: blur(10px);
+            padding: 28px 32px;
+            border-radius: 24px;
+            border: 1px solid rgba(50,60,85,0.4);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+        }
+        .card:hover {
+            border-color: rgba(59,130,246,0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(59,130,246,0.06);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 40px;
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            color: #ffffff;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 13px;
+            border: 1px solid rgba(59,130,246,0.5);
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .btn:hover {
+            background: linear-gradient(145deg, #2d3a5e, #1e293b);
+            border-color: #60a5fa;
+            transform: scale(1.02);
+            box-shadow: 0 6px 14px rgba(59,130,246,0.25);
+        }
+        .btn.outline {
+            background: transparent;
+            border: 1px solid #4b5563;
+            color: #cbd5e6;
+        }
+        .btn.outline:hover {
+            background: rgba(59,130,246,0.15);
+            border-color: #3b82f6;
+            color: white;
+        }
+        .btn.small {
+            padding: 6px 16px;
+            font-size: 12px;
+        }
+
+        header {
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(59,130,246,0.2);
+            background: rgba(8,12,22,0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 0 0 28px 28px;
+            margin-bottom: 8px;
+        }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo .mark {
+            width: 38px; height: 38px; border-radius: 12px; overflow: hidden;
+            box-shadow: 0 0 0 1px #3b82f6;
+        }
+        .logo .mark img { width: 100%; height: 100%; object-fit: cover; }
+        nav a {
+            color: #cbd5e6; text-decoration: none; margin-left: 28px;
+            font-weight: 500; font-size: 14px; transition: 0.2s;
+        }
+        nav a:hover { color: #ffffff; text-shadow: 0 0 5px #3b82f6; }
+
+        section { padding: 48px 0; border-bottom: 1px solid rgba(59,130,246,0.15); }
+        h1 {
+            font-size: 42px; font-weight: 800;
+            background: linear-gradient(135deg, #FFFFFF, #A5B4FC, #60A5FA, #C084FC);
+            background-size: 300% 300%;
+            -webkit-background-clip: text; background-clip: text;
+            color: transparent;
+            animation: gradientShift 5s ease infinite;
+            letter-spacing: -0.02em;
+            margin: 0 0 4px 0;
+        }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .subhead {
+            font-size: 18px;
+            color: #a0a8c0;
+            font-weight: 400;
+            margin-bottom: 28px;
+        }
+        .muted { color: var(--muted); }
+
+        .model-card {
+            background: rgba(15,20,32,0.6);
+            backdrop-filter: blur(10px);
+            padding: 28px 32px;
+            border-radius: 24px;
+            border: 1px solid rgba(50,60,85,0.4);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+            margin-bottom: 28px;
+        }
+        .model-card:hover {
+            border-color: rgba(59,130,246,0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(59,130,246,0.06);
+        }
+        .model-card .badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            background: rgba(59,130,246,0.15);
+            color: #60a5fa;
+            padding: 2px 14px;
+            border-radius: 30px;
+            border: 1px solid rgba(59,130,246,0.3);
+            margin-bottom: 10px;
+        }
+        .model-card .badge.preview {
+            background: rgba(251,191,36,0.12);
+            border-color: rgba(251,191,36,0.25);
+            color: #fbbf24;
+        }
+        .model-card .badge.release {
+            background: rgba(74,222,128,0.1);
+            border-color: rgba(74,222,128,0.2);
+            color: #4ade80;
+        }
+        .model-card .badge.multimodal {
+            background: rgba(168,85,247,0.12);
+            border-color: rgba(168,85,247,0.25);
+            color: #a78bfa;
+        }
+        .model-card .badge.open-source {
+            background: rgba(251,191,36,0.1);
+            border-color: rgba(251,191,36,0.2);
+            color: #fbbf24;
+        }
+        .model-card h2 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #e8edff;
+            margin-bottom: 6px;
+        }
+        .model-card .meta {
+            color: #889bc9;
+            font-size: 14px;
+            margin-bottom: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px 20px;
+            border-bottom: 1px solid rgba(50,60,85,0.3);
+            padding-bottom: 12px;
+        }
+        .model-card .meta span {
+            color: #889bc9;
+        }
+        .model-card .meta span strong {
+            color: #c6d2ee;
+            font-weight: 500;
+        }
+        .model-card p {
+            color: #c6d2ee;
+            margin-bottom: 12px;
+        }
+        .model-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 16px;
+        }
+        .model-card ul li {
+            color: #b0c2e8;
+            padding: 4px 0 4px 24px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="%236a8ac0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>') left center no-repeat;
+            background-size: 14px;
+        }
+        .model-card .link-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 16px;
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(50,60,85,0.3);
+        }
+        .model-card .link-group a {
+            color: #8aa6e6;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .model-card .link-group a:hover {
+            color: #c2d4ff;
+        }
+
+        footer {
+            padding: 32px 0; color: #7f8cae; font-size: 14px;
+            border-top: 1px solid rgba(59,130,246,0.2); margin-top: 10px;
+        }
+        footer a { color: #8ba0d0; transition: 0.2s; text-decoration: none; }
+        footer a:hover { color: white; }
+        ::-webkit-scrollbar { width: 8px; background: #11161f; }
+        ::-webkit-scrollbar-thumb { background: #2d3a52; border-radius: 8px; }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 16px;
+            color: #60a5fa;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+        .back-link:hover { color: white; }
+        .back-link::before { content: "← "; }
+    </style>
+</head>
+<body>
+
+<header class="container">
+    <div class="logo">
+        <div class="mark"><img src="../icon.jpg" alt="TAI Research Logo"></div>
+        <div>
+            <div style="font-weight:700; color:#ffffff;">TAI Research</div>
+            <small style="color:var(--muted)">Building the Future of Intelligence</small>
+        </div>
+    </div>
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="../products.html">Products</a>
+        <a href="../research.html">Research</a>
+        <a href="../news.html">News</a>
+    </nav>
+</header>
+
+<main class="container">
+
+    <section style="border-bottom: none; padding-top: 24px; padding-bottom: 16px;">
+        <a href="../products.html" class="back-link">Back to Products</a>
+        <h1>GTC Series</h1>
+        <div class="subhead">Generative Trained Core — foundation models from TAI Research</div>
+    </section>
+
+    <section style="border-bottom: none; padding-top: 8px;">
+
+        <!-- GTC-2.5 & GTC-2.5 mini -->
+        <div class="model-card">
+            <div>
+                <span class="badge release">Release</span>
+                <span class="badge">July 2026</span>
+            </div>
+            <h2>GTC-2.5 &amp; GTC-2.5 mini</h2>
+            <div class="meta">
+                <span><strong>400M</strong> / <strong>64M</strong> parameters</span>
+                <span><strong>Text</strong> only</span>
+                <span><strong>V100</strong> trained</span>
+                <span>Production ready</span>
+            </div>
+            <p>
+                TAI Research's most capable foundation model to date. GTC-2.5 (400M parameters)
+                delivers substantially improved coherence, knowledge retention, and instruction-following
+                capabilities. GTC-2.5 mini (64M) is open-sourced for the community.
+            </p>
+            <ul>
+                <li>19GB curated dataset — Chinese, English, code, mathematics</li>
+                <li>Significantly better factual accuracy and reasoning</li>
+                <li>Stable multi-turn dialogue and reliable instruction following</li>
+                <li>GTC-2.5 mini available under permissive license</li>
+            </ul>
+            <div class="link-group">
+                <a href="../Research/gtc-2.5.html">📖 Read full article →</a>
+            </div>
+        </div>
+
+        <!-- GTC-2.5o -->
+        <div class="model-card">
+            <div>
+                <span class="badge preview">Preview</span>
+                <span class="badge multimodal">Multimodal</span>
+                <span class="badge">July 2026</span>
+            </div>
+            <h2>GTC-2.5o</h2>
+            <div class="meta">
+                <span><strong>64M</strong> parameters</span>
+                <span><strong>Vision + Audio + Text</strong></span>
+                <span><strong>V100 32G</strong> trained</span>
+                <span>Research preview</span>
+            </div>
+            <p>
+                The first truly multimodal member of the GTC family. Integrates vision and audio
+                encoders directly into the foundation, enabling unified understanding across
+                images, speech, and text.
+            </p>
+            <ul>
+                <li>Image captioning, VQA, and visual scene interpretation</li>
+                <li>Audio comprehension and spoken input processing</li>
+                <li>Cross-modal reasoning across multiple sources</li>
+                <li>Baseline for larger multimodal models</li>
+            </ul>
+            <div class="link-group">
+                <a href="../Research/gtc-2.5o.html">📖 Read full article →</a>
+            </div>
+        </div>
+
+        <!-- GTC-2.5 Preview -->
+        <div class="model-card">
+            <div>
+                <span class="badge preview">Preview</span>
+                <span class="badge">July 2026</span>
+            </div>
+            <h2>GTC-2.5 Preview</h2>
+            <div class="meta">
+                <span><strong>64M</strong> parameters</span>
+                <span><strong>Text</strong> only</span>
+                <span><strong>V100</strong> trained</span>
+                <span>Research preview</span>
+            </div>
+            <p>
+                TAI Research's first conversational foundation model. Built on the open‑source
+                MiniMind project, GTC‑2.5 Preview validates our training pipeline and serves as
+                a baseline for larger models to come.
+            </p>
+            <ul>
+                <li>Dialogue, knowledge retrieval, and code generation</li>
+                <li>Compact 64M design — fast inference, low footprint</li>
+                <li>Designed for technical validation and internal benchmarking</li>
+            </ul>
+            <div class="link-group">
+                <a href="../GTC-2.5%20Preview%20System%20Card.pdf" target="_blank">📄 System Card (PDF)</a>
+                <a href="https://ltyleo.github.io/sigma/" target="_blank">▶ Try on Sigma</a>
+                <a href="https://huggingface.co/TAI-Research" target="_blank">🤗 Hugging Face</a>
+                <a href="../Research/gtc-2.5-preview.html">📖 Read full article →</a>
+            </div>
+        </div>
+
+        <!-- GTC-2.5V Preview -->
+        <div class="model-card">
+            <div>
+                <span class="badge preview">Preview</span>
+                <span class="badge">July 2026</span>
+            </div>
+            <h2>GTC-2.5V Preview</h2>
+            <div class="meta">
+                <span><strong>64M</strong> parameters</span>
+                <span><strong>Vision + Language</strong></span>
+                <span><strong>V100 32G</strong> trained</span>
+                <span>Research preview</span>
+            </div>
+            <p>
+                TAI Research's first vision‑language model. Extending GTC with a lightweight
+                visual encoder, GTC‑2.5V Preview supports image captioning, VQA, and OCR‑style
+                text reading from images.
+            </p>
+            <ul>
+                <li>Multimodal understanding — images + text</li>
+                <li>64M backbone + visual encoder</li>
+                <li>Baseline for larger multimodal models</li>
+            </ul>
+            <div class="link-group">
+                <a href="../GTC-2.5V%20Preview%20System%20Card.pdf" target="_blank">📄 System Card (PDF)</a>
+                <a href="https://ltyleo.github.io/sigma/" target="_blank">▶ Try on Sigma</a>
+                <a href="https://huggingface.co/TAI-Research" target="_blank">🤗 Hugging Face</a>
+                <a href="../Research/gtc-2.5v-preview.html">📖 Read full article →</a>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- 导航 -->
+    <section style="border-bottom: none; padding-top: 8px; padding-bottom: 24px;">
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+            <a href="../index.html" class="btn outline" style="padding: 8px 24px;">← Back to Home</a>
+            <a href="../products.html" class="btn outline" style="padding: 8px 24px;">All Products</a>
+            <a href="../research.html" class="btn outline" style="padding: 8px 24px;">Research</a>
+        </div>
+    </section>
+
+</main>
+
+<footer class="container">
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+        <div>© TAI Research · GTC Series</div>
+        <div style="display:flex; gap:16px;">
+            <a href="https://github.com/LTYLeo" target="_blank">GitHub</a>
+            <a href="https://huggingface.co/TAI-Research" target="_blank">Hugging Face</a>
+            <a href="https://space.bilibili.com/88158150" target="_blank">Bilibili</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

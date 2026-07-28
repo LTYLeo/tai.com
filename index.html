@@ -121,6 +121,29 @@
             transform: translateY(-2px);
         }
 
+        /* 可点击卡片样式 */
+        .card-clickable {
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .card-clickable:hover {
+            border-color: rgba(59, 130, 246, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* 新闻卡片点击样式 */
+        .news-clickable {
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        .news-clickable:hover {
+            border-color: rgba(59, 130, 246, 0.6);
+            transform: translateY(-2px);
+        }
+
         /* 渐变标题 Hero */
         .hero h1 {
             font-size: 48px;
@@ -334,6 +357,22 @@
             color: #60a5fa;
             min-width: 110px;
         }
+        .view-all-link {
+            display: inline-block;
+            margin-top: 16px;
+            color: #60a5fa;
+            text-decoration: none;
+            font-weight: 500;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 30px;
+            padding: 8px 24px;
+            transition: 0.2s;
+        }
+        .view-all-link:hover {
+            background: rgba(59, 130, 246, 0.12);
+            border-color: #3b82f6;
+            color: white;
+        }
         footer {
             padding: 32px 0;
             color: #7f8cae;
@@ -416,9 +455,9 @@
             </div>
         </div>
         <nav>
-            <a href="#products">Products</a>
-            <a href="#research">Research</a>
-            <a href="#news">News</a>
+            <a href="products.html">Products</a>
+            <a href="research.html">Research</a>
+            <a href="news.html">News</a>
             <a href="#developers">Developers</a>
             <a href="#support">Support</a>
         </nav>
@@ -431,7 +470,7 @@
                 <p>TAI Research explores and develops artificial intelligence systems to benefit humanity. We offer AI services to public and we also build, open-source, and ship research previews for the community.</p>
                 <p>
                     <a class="btn" href="https://ltyleo.github.io/sigma/" target="_blank">Experience Sigma</a>
-                    <a class="btn outline" style="margin-left:12px;" href="#research">Explore Research</a>
+                    <a class="btn outline" style="margin-left:12px;" href="research.html">Explore Research</a>
                 </p>
             </div>
             <div class="card">
@@ -452,21 +491,24 @@
             <h2>Products</h2>
             <p style="color:var(--muted)">Deployments and demos built from our research.</p>
             <div class="grid">
-                <div class="card">
+                <a href="products.html" class="card card-clickable">
                     <h3>Sigma</h3>
                     <p style="color:var(--muted)">A conversational website showcasing the GTC Series Models. You can access different models with an account or just start using our models instantly.</p>
-                    <a class="btn" href="https://ltyleo.github.io/sigma/" target="_blank">Try Sigma</a>
-                </div>
-                <div class="card">
+                    <div style="margin-top:12px;color:#60a5fa;font-size:14px;">Learn more →</div>
+                </a>
+                <a href="products.html" class="card card-clickable">
                     <h3>Sigma Series</h3>
                     <p style="color:var(--muted)">Domain-specific expert models: Sigma Gobang, Sigma Paint, Sigma Prove, and more.</p>
-                    <a class="btn" href="https://ltyleo.github.io/gobang/" target="_blank">Try Sigma Gobang</a>
-                </div>
-                <div class="card">
+                    <div style="margin-top:12px;color:#60a5fa;font-size:14px;">Learn more →</div>
+                </a>
+                <a href="products.html" class="card card-clickable">
                     <h3>TAI Guardian</h3>
                     <p style="color:var(--muted)">AI Safety model series for content moderation and alignment. Starting with GTC-Guard-0, we build safety from the ground up.</p>
-                    <a class="btn outline" href="https://huggingface.co/TAI-Research/GTC-Guard-0" target="_blank">Explore Guardian</a>
-                </div>
+                    <div style="margin-top:12px;color:#60a5fa;font-size:14px;">Learn more →</div>
+                </a>
+            </div>
+            <div style="text-align:center;margin-top:16px;">
+                <a href="products.html" class="view-all-link">View All Products →</a>
             </div>
         </section>
 
@@ -474,16 +516,19 @@
             <h2>Research</h2>
             <p style="color:var(--muted)">Public research projects, papers, and open-source releases.</p>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px">
-                <div class="card">
+                <a href="research.html" class="card card-clickable">
                     <h3>GTC Series</h3>
                     <p style="color:var(--muted)">Generative Trained Core family — from GTC-1 to GTC-2.5. See model cards and checkpoints on Hugging Face.</p>
-                    <p style="margin-top:16px"><a href="https://huggingface.co/TAI-Research" target="_blank" class="btn">View models</a></p>
-                </div>
-                <div class="card">
+                    <div style="margin-top:12px;color:#60a5fa;font-size:14px;">Learn more →</div>
+                </a>
+                <a href="research.html" class="card card-clickable">
                     <h3>TAI Guardian <span class="badge">New</span></h3>
                     <p style="color:var(--muted)">A safety-first model series for text moderation. GTC-Guard-0 is the first baseline classifier, designed for interpretability and lightweight deployment.</p>
-                    <p style="margin-top:16px"><a href="https://huggingface.co/TAI-Research/GTC-Guard-0" target="_blank" class="btn outline">Read Model Card</a></p>
-                </div>
+                    <div style="margin-top:12px;color:#60a5fa;font-size:14px;">Learn more →</div>
+                </a>
+            </div>
+            <div style="text-align:center;margin-top:16px;">
+                <a href="research.html" class="view-all-link">View All Research →</a>
             </div>
         </section>
 
@@ -491,128 +536,39 @@
             <h2>News</h2>
             <div style="display:flex;flex-direction:column;gap:16px;margin-top:16px">
 
-                <!-- 新增新闻：GTC-2.5V Preview -->
-                <div class="card news-item">
-                    <div class="news-date">2026-7-14</div>
-                    <div style="flex:1">
-                        <strong>🖼️ GTC-2.5V Preview Released — TAI Research‘s First Vision-Language Model</strong>
-                        <div style="color:var(--muted);margin-top:8px">
-                            We are excited to announce the release of GTC-2.5V Preview, the first vision-language foundation model developed by TAI Research. Extending the GTC series with multimodal capabilities, this 64M-parameter model integrates a lightweight visual encoder with a decoder-only language backbone, trained end-to-end on a V100 32G GPU.
-                            <br><br>
-                            GTC-2.5V Preview demonstrates foundational capabilities in image captioning, visual question answering, and text reading from images. While it is a compact research preview, it serves as a baseline for our upcoming larger vision-language models and downstream applications, including multimodal agents and Computer Use scenarios.
-                            <br><br>
-                            This release reaffirms our commitment to transparent, efficient AI research across modalities. We extend our gratitude to the MiniMind-V team for their open-source contributions, enabling us to explore multimodal AI efficiently.
-                            <br><br>
-                            <strong>📄 System Card Available:</strong>
-                            <a href="./GTC-2.5V%20Preview%20System%20Card.pdf" target="_blank" style="color:#60a5fa;text-decoration:underline;">Download GTC-2.5V Preview System Card (PDF)</a>
+                <!-- 最新新闻 1：GTC-2.5 & GTC-2.5 mini -->
+                <a href="news.html" class="card news-clickable">
+                    <div style="display:flex;gap:16px;align-items:flex-start;">
+                        <div class="news-date">2026-7-29</div>
+                        <div style="flex:1">
+                            <strong>🚀 GTC-2.5 &amp; GTC-2.5 mini Released — The Foundation is Set</strong>
+                            <div style="color:var(--muted);margin-top:8px">
+                                We are thrilled to announce the release of GTC-2.5 (400M parameters) and GTC-2.5 mini (64M parameters). This marks the end of the "Preview" era and the beginning of a more mature, product-oriented phase.
+                                <br><br>
+                                <span style="color:#60a5fa;">Read full article →</span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
 
-                <!-- 新增新闻：GTC-2.5 Preview -->
-                <div class="card news-item">
-                    <div class="news-date">2026-7-3</div>
-                    <div style="flex:1">
-                        <strong>🚀 GTC-2.5 Preview Released — TAI Research's First Conversational Foundation Model</strong>
-                        <div style="color:var(--muted);margin-top:8px">
-                            We are excited to announce the release of GTC-2.5 Preview, the first conversational foundation model developed by TAI Research. Built upon the open-source MiniMind project and trained on a V100 GPU, this 64M-parameter model marks a critical milestone in validating our technical pipeline.
-                            <br><br>
-                            GTC-2.5 Preview demonstrates foundational capabilities in dialogue, knowledge retrieval, and code generation. While it is a compact research preview, it serves as a baseline for our upcoming larger models and applications, including domain-specific AI assistants and lightweight edge deployments.
-                            <br><br>
-                            This release reaffirms our commitment to transparent, efficient AI research. We extend our gratitude to the MiniMind team for their open-source contributions, enabling us to stand on the shoulders of giants.
-                            <br><br>
-                            <strong>📄 System Card Available:</strong>
-                            <a href="./GTC-2.5%20Preview%20System%20Card.pdf" target="_blank" style="color:#60a5fa;text-decoration:underline;">Download GTC-2.5 Preview System Card (PDF)</a>
+                <!-- 最新新闻 2：GTC-2.5o -->
+                <a href="news.html" class="card news-clickable">
+                    <div style="display:flex;gap:16px;align-items:flex-start;">
+                        <div class="news-date">2026-7-29</div>
+                        <div style="flex:1">
+                            <strong>🔄 GTC-2.5o Preview — Expanding the Horizon with Full-Modal Understanding</strong>
+                            <div style="color:var(--muted);margin-top:8px">
+                                We are excited to introduce GTC-2.5o, the first truly multimodal member of the GTC family — integrating text, image, and audio understanding in a unified model.
+                                <br><br>
+                                <span style="color:#60a5fa;">Read full article →</span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
 
-                <!-- 原有新闻 -->
-                <div class="card news-item">
-                    <div class="news-date">2026-5-23</div>
-                    <div style="flex:1">
-                        <strong>🔥 GTC-Guard-0 Released — TAI Guardian's First Safety Model</strong>
-                        <div style="color:var(--muted);margin-top:8px">We're proud to announce GTC-Guard-0, the first model in the TAI Guardian series. This lightweight text safety classifier (under 10M parameters) is built for interpretability and CPU inference. It marks TAI Research's first step into AI alignment and content safety — building values from the first line of code. Available now on Hugging Face under MIT license.</div>
-                        <div style="margin-top:12px"><a href="https://huggingface.co/TAI-Research/GTC-Guard-0" target="_blank" class="btn outline" style="padding:6px 16px;font-size:12px">🤗 Download on Hugging Face →</a></div>
-                    </div>
-                </div>
-                <div class="card news-item">
-                    <div class="news-date">2026-4-30</div>
-                    <div style="flex:1">
-                        <strong>Introducing Sigma!</strong>
-                        <div style="color:var(--muted);margin-top:8px">After a long rest, we are now back. TAI Sigma Chat is now called Sigma.</div>
-                    </div>
-                </div>
-                <div class="card news-item">
-                    <div class="news-date">2025-11-14</div>
-                    <div style="flex:1">
-                        <strong>ESFT GTC-2 Open Source</strong>
-                        <div style="color:var(--muted);margin-top:8px">We are back after a long pause. Weights and repository published.</div>
-                    </div>
-                </div>
-                <div class="card news-item">
-                    <div class="news-date">2025-10-04</div>
-                    <div style="flex:1">
-                        <strong>Introducing Sigma Gobang 2!</strong>
-                        <div style="color:var(--muted);margin-top:8px">The previous Sigma Gobang Turbo is too slow, so we create a new one — Sigma Gobang 2.</div>
-                    </div>
-                </div>
-                <div class="card news-item">
-                    <div class="news-date">2025-10-01</div>
-                    <div style="flex:1">
-                        <strong>Introducing ESFT GTC-2!</strong>
-                        <div style="color:var(--muted);margin-top:8px">An Early Supervised Fine-Tuned GTC-2 model for improved conversational performance.</div>
-                    </div>
-                </div>
-                <div class="card news-item">
-                    <div class="news-date">2025-09-30</div>
-                    <div style="flex:1">
-                        <strong>Sigma Gobang Turbo is now available.</strong>
-                        <div style="color:var(--muted);margin-top:8px">We enhanced the algorithm of Sigma Gobang and built the Sigma Gobang Turbo.</div>
-                    </div>
-                </div>
-                <div class="card news-item">
-                    <div class="news-date">2025-09-26</div>
-                    <div style="flex:1">
-                        <strong>Introducing Sigma Gobang online!</strong>
-                        <div style="color:var(--muted);margin-top:8px">You can now access the Sigma Gobang online!</div>
-                    </div>
-                </div>
-                <div class="card news-item">
-                    <div class="news-date">2025-09-21</div>
-                    <div style="flex:1">
-                        <strong>We now offer two new models for developers: GTC-2 Large mini and GTC-2 Large nano</strong>
-                        <div style="color:var(--muted);margin-top:8px">Developers can now visit Hugging Face to download these two models. The two models have the performance of the approximate GTC-2 Large while reducing the parameter size.</div>
-                    </div>
-                </div>
-                <div class="card news-item">
-                    <div class="news-date">2025-09-20</div>
-                    <div style="flex:1">
-                        <strong>TAI Sigma Chat is now equipped with account login and conversation history.</strong>
-                        <div style="color:var(--muted);margin-top:8px">Users can explore the chat freely without an account, or choose to register and log in to unlock persistent conversation history. This marks a step forward in making TAI Sigma Chat not only a research demo, but also a growing platform for interactive intelligence.</div>
-                    </div>
-                </div>
-                <div class="card news-item">
-                    <div class="news-date">2025-09-19</div>
-                    <div style="flex:1">
-                        <strong>GTC-2 Large Base Model Launched</strong>
-                        <div style="color:var(--muted);margin-top:8px">Weights and repository published. Public beta available on the demo site.</div>
-                    </div>
-                </div>
-                <div class="card news-item">
-                    <div class="news-date">2025-09-09</div>
-                    <div style="flex:1">
-                        <strong>Multi-model switching is now available!</strong>
-                        <div style="color:var(--muted);margin-top:8px">You can now select different models and experience them.</div>
-                    </div>
-                </div>
-                <div class="card news-item">
-                    <div class="news-date">2025-09-07</div>
-                    <div style="flex:1">
-                        <strong>Introducing TAI Sigma Chat!</strong>
-                        <div style="color:var(--muted);margin-top:8px">Start using our models instantly!</div>
-                    </div>
-                </div>
+            </div>
+            <div style="text-align:center;margin-top:16px;">
+                <a href="news.html" class="view-all-link">View All News →</a>
             </div>
         </section>
 
