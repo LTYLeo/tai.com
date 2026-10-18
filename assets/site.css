@@ -21,6 +21,10 @@
        to start. */
     --header-h: 76px;
     --radius: 20px;
+    /* Used by .site-header for the curved bottom edge. It was referenced without
+       ever being defined, so border-radius resolved to nothing and the bar came
+       out square instead of shaped like the Developer Platform's. */
+    --radius-lg: 28px;
     --max-w: 1100px;
 
     /* Fluid type. A 48px headline is right on a laptop and unreadable on a
@@ -40,7 +44,7 @@ body {
     font-family: "Inter", "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif;
     background: radial-gradient(ellipse at 20% 30%, #0c0f1c, #020408);
     color: var(--text);
-    line-height: 1.6;
+    line-height: 1.55;
     position: relative;
     overflow-x: hidden;
     -webkit-text-size-adjust: 100%;
@@ -126,6 +130,10 @@ main, footer, section, nav, .card, .btn, .container {
     z-index: 60;
 }
 
+/* Logo block. Mirrors the Developer Platform: the mark, then a stack of name
+   and tagline. .logo-name has to be display:block, otherwise the tagline sits
+   on the same line as the name - which is what happened when the wrapper was
+   changed from a div to a span. */
 .logo {
     display: flex;
     align-items: center;
@@ -138,16 +146,30 @@ main, footer, section, nav, .card, .btn, .container {
 .logo .mark {
     width: 38px;
     height: 38px;
-    flex: 0 0 38px;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 0 0 1px #3b82f6;
+    flex: 0 0 auto;
 }
 
 .logo .mark img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-.logo-name { font-weight: 700; color: #ffffff; font-size: 16px; }
-.logo-tag { color: var(--muted); font-size: 12px; display: block; }
+/* No font-size on <small>: the element's own 0.833em (13.33px) is what the
+   Developer Platform renders, and overriding it to 12px made the whole logo
+   block 7px shorter than the other site's. */
+.logo-name {
+    font-weight: 700;
+    color: #ffffff;
+    display: block;
+    line-height: 1.25;
+    font-size: 16px;
+}
+
+/* No display or line-height override. As inline, <small> forms its own line
+   box after the block-level .logo-name and picks up the body's line-height,
+   which is what makes the Developer Platform's logo block 45px tall. Forcing
+   display:block gave it a compressed line box and a 38px block. */
+.logo small { color: var(--muted); }
 
 .site-nav {
     display: flex;
