@@ -22,7 +22,7 @@ window.TAI_I18N = {
         "nav.products": "产品",
         "nav.research": "研究",
         "nav.news": "动态",
-        "nav.leadership": "团队",
+        "nav.leadership": "领导层",
         "nav.support": "支持",
 
         /* ── Home ───────────────────────────────────────────────── */
@@ -89,8 +89,8 @@ window.TAI_I18N = {
         "respage.sub": "公开的研究工作、模型与开源发布。",
 
         /* ── Leadership page ────────────────────────────────────── */
-        "leadpage.title": "团队",
-        "leadpage.sub": "一支小团队，选择自己的道路。",
+        "leadpage.title": "领导层",
+        "leadpage.sub": "引领 TAI Research 愿景、战略与长期基础研究的执行团队。",
 
         /* ── Strategic shift article ────────────────────────────── */
         "shift.title": "一次战略调整：从模型迭代，到基础研究",
@@ -136,18 +136,27 @@ window.TAI_I18N = {
         "res.guard.desc": "轻量文本安全分类器，TAI Guardian 系列的首个模型，为 AI 对齐与内容安全而构建。",
 
         /* ── Leadership page ───────────────────────────────────── */
+
+
+        /* ── Leadership page ───────────────────────────────────── */
+        "lead.name0": "李天祎",
         "lead.role0": "创始人兼首席执行官（CEO）",
-        "lead.bio0": "负责 TAI Research 的整体愿景与战略，主导长期基础研究与公司技术方向。",
+        "lead.bio0": "主导 TAI Research 的整体愿景与战略。负责长期基础研究，并推动公司的技术方向。",
+        "lead.name1": "王正明",
         "lead.role1": "首席技术官（CTO）",
-        "lead.bio1": "负责技术研发与工程落地，主导长期基础研究，以及支撑所有 TAI 项目的基础设施。",
+        "lead.bio1": "主导技术开发与工程执行。负责长期基础研究，以及支撑所有 TAI 项目的技术基础设施。",
+        "lead.name2": "杨元硕",
         "lead.role2": "首席研究官（CRO）",
-        "lead.bio2": "负责研究战略与模型研发，主导长期基础研究，包括模型训练、数据集处理与 GTC 系列。",
+        "lead.bio2": "主导研究战略与模型开发。负责长期基础研究，包括模型训练、数据集处理与 GTC 系列。",
+        "lead.name3": "陆昱",
         "lead.role3": "首席产品官（CPO）",
-        "lead.bio3": "负责产品开发与设计，把研究成果转化为可用的产品与平台。",
+        "lead.bio3": "主导产品开发与设计，将研究成果转化为可用的产品与平台。",
+        "lead.name4": "段咏成",
         "lead.role4": "人力资源",
-        "lead.bio4": "负责团队建设、人才招聘与组织发展。",
+        "lead.bio4": "主导团队建设、人才招聘与组织发展。",
+        "lead.name5": "王效一",
         "lead.role5": "软件工程副总裁",
-        "lead.bio5": "负责软件架构、开发规范与技术治理。",
+        "lead.bio5": "主导软件架构、开发规范与技术治理。",
 
         /* ── News list entries ─────────────────────────────────── */
         "news.shift.title": "一次战略调整：从模型迭代，到基础研究",
@@ -194,15 +203,25 @@ window.TAI_I18N = {
             "products": "Products — TAI Research",
             "research": "Research — TAI Research",
             "leadership": "Leadership — TAI Research",
-            "shift": "A Strategic Shift — TAI Research"
+            "shift": "A Strategic Shift — TAI Research",
+            "gtc25": "GTC-2.5 — TAI Research",
+            "gtc25o": "GTC-2.5o — TAI Research",
+            "gtc25p": "GTC-2.5 Preview — TAI Research",
+            "gtc25v": "GTC-2.5V Preview — TAI Research",
+            "gtcseries": "GTC Series — TAI Research"
         },
         zh: {
             "index": "TAI Research — 构建智能的未来",
             "news": "动态 — TAI Research",
             "products": "产品 — TAI Research",
             "research": "研究 — TAI Research",
-            "leadership": "团队 — TAI Research",
-            "shift": "一次战略调整 — TAI Research"
+            "leadership": "领导层 — TAI Research",
+            "shift": "一次战略调整 — TAI Research",
+            "gtc25": "GTC-2.5 — TAI Research",
+            "gtc25o": "GTC-2.5o — TAI Research",
+            "gtc25p": "GTC-2.5 预览 — TAI Research",
+            "gtc25v": "GTC-2.5V 预览 — TAI Research",
+            "gtcseries": "GTC 系列 — TAI Research"
         }
     }
 };

@@ -104,28 +104,26 @@ main, footer, section, nav, .card, .btn, .container {
    simply hid the nav below 900px and offered nothing in its place.
    ========================================================================== */
 
-header {
-    padding: 16px 20px;
+/* Header, nav and toggle mirror the Developer Platform's .site-header /
+   .site-nav / .nav-toggle exactly - same padding, gap, background opacity and
+   stacking level. The two sites share a brand and a reader's eye, so the bar at
+   the top should not be one of the places they differ. */
+.site-header {
+    padding: 24px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
+    gap: 20px;
+    flex-wrap: wrap;
     border-bottom: 1px solid rgba(59, 130, 246, 0.2);
-    background: rgba(8, 12, 22, 0.82);
+    background: rgba(8, 12, 22, 0.7);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border-radius: 0 0 28px 28px;
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
     margin-bottom: 8px;
     position: sticky;
     top: 0;
-    min-height: var(--header-h);
-}
-
-/* Stated on header.container so no generic rule can outrank it again, and above
-   main: the mobile menu drops out of the header and has to paint over the page. */
-header.container {
-    position: sticky;
-    z-index: 100;
+    z-index: 60;
 }
 
 .logo {
@@ -151,30 +149,37 @@ header.container {
 .logo-name { font-weight: 700; color: #ffffff; font-size: 16px; }
 .logo-tag { color: var(--muted); font-size: 12px; display: block; }
 
-nav {
+.site-nav {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 28px;
     flex-wrap: wrap;
 }
 
-nav a {
+.site-nav a {
     color: #cbd5e6;
-    text-decoration: none;
-    padding: 10px 14px;
     font-weight: 500;
     font-size: 14px;
-    border-radius: 10px;
-    transition: color 0.2s, background 0.2s;
-    /* Comfortable to tap. Text at 14px with no padding is a miss waiting to
-       happen on a phone. */
-    min-height: 40px;
-    display: inline-flex;
-    align-items: center;
+    transition: 0.2s;
+    text-decoration: none;
 }
 
-nav a:hover { color: #ffffff; background: rgba(59, 130, 246, 0.12); }
-nav a[aria-current="page"] { color: #ffffff; background: rgba(59, 130, 246, 0.16); }
+.site-nav a:hover { color: #ffffff; text-shadow: 0 0 5px #3b82f6; }
+.site-nav a[aria-current="page"] { color: #ffffff; }
+
+.nav-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-size: 18px;
+}
 
 /* Language toggle.
 
@@ -190,7 +195,6 @@ nav a[aria-current="page"] { color: #ffffff; background: rgba(59, 130, 246, 0.16
     border-radius: 20px;
     border: 1px solid rgba(59, 130, 246, 0.35);
     background: rgba(10, 14, 24, 0.7);
-    margin-left: 8px;
     flex: 0 0 auto;
 }
 
@@ -227,23 +231,6 @@ nav a[aria-current="page"] { color: #ffffff; background: rgba(59, 130, 246, 0.16
     box-shadow: 0 0 0 1px rgba(96, 165, 250, 0.5);
 }
 
-/* Mobile menu button: hidden until the nav no longer fits. */
-.menu-toggle {
-    display: none;
-    border: 1px solid var(--card-border);
-    background: rgba(15, 20, 32, 0.6);
-    color: var(--text);
-    border-radius: 12px;
-    width: 44px;
-    height: 44px;
-    font-size: 20px;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    flex: 0 0 44px;
-}
-
-.menu-toggle:hover { border-color: var(--accent); }
 
 /* ==========================================================================
    Type
@@ -402,19 +389,107 @@ section:last-child { border-bottom: none; }
 
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
 
-/* Home page news teasers */
+/* News entries.
+
+   These were plain flex rows after the shared stylesheet was introduced, which
+   stripped the card that every entry used to sit in and left the list reading as
+   one wall of text. The card is back, with two changes from the original: the
+   summary is clamped so a long announcement cannot dominate the list, and the
+   whole row is the link rather than a small "read more" at the end. */
+.news-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* The row layout is shared; only entries directly inside a .news-list become
+   cards. The home page already wraps each teaser in a .card, and giving the row
+   its own border on top of that produced a box inside a box. */
 .news-item {
     display: flex;
-    gap: 16px;
+    flex-wrap: wrap;
     align-items: flex-start;
+    gap: 20px;
+    text-decoration: none;
+    color: inherit;
 }
+
+/* Entries are wrapped in .card, the same box the home page uses, so the two
+   pages cannot drift apart. An entry that is not a link gets no card of its own. */
+.news-list > .news-item {
+    background: rgba(15, 20, 32, 0.6);
+    border: 1px solid rgba(50, 60, 85, 0.45);
+    border-radius: 20px;
+    padding: 22px 24px;
+}
+
+/* Only a link should react to the pointer; a static entry that jumps under the
+   cursor promises something it cannot deliver. */
+/* The card already lifts on hover; adding a slide on top of it moved the text
+   out from under the pointer. */
+.news-list > .news-item {
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    background: none;
+}
+
+.news-item .meta {
+    min-width: 108px;
+    flex: 0 0 auto;
+    color: #7f8cae;
+    font-size: 14px;
+    font-weight: 600;
+    padding-top: 2px;
+}
+
+.news-item .content { flex: 1; min-width: 220px; }
 
 .news-date {
     font-size: 14px;
     font-weight: 600;
     color: #60a5fa;
-    min-width: 96px;
+    min-width: 108px;
     flex: 0 0 auto;
+    padding-top: 2px;
+}
+
+.news-title {
+    display: block;
+    font-size: clamp(15px, 1.9vw, 17px);
+    font-weight: 650;
+    line-height: 1.45;
+    color: #eef2ff;
+    margin-bottom: 8px;
+}
+
+.news-desc {
+    color: var(--muted);
+    font-size: 14.5px;
+    line-height: 1.65;
+    max-width: 68ch;
+    /* Three lines is enough to judge whether it is worth opening. Without this
+       the GTC-2.5 entry alone ran to nine. */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.news-read {
+    display: inline-block;
+    margin-top: 10px;
+    color: #60a5fa;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+a.news-item:hover .news-read { color: #93c5fd; }
+
+@media (max-width: 640px) {
+    .news-item { padding: 16px 18px; gap: 8px; }
+    .news-item .meta, .news-date { min-width: 0; width: 100%; }
+    .news-desc { max-width: none; }
 }
 
 /* ==========================================================================
@@ -489,48 +564,37 @@ footer a:hover { color: #ffffff; }
    ========================================================================== */
 
 @media (max-width: 900px) {
-    .hero { grid-template-columns: 1fr; gap: 28px; }
+    .hero { grid-template-columns: 1fr; gap: 32px; }
 
-    /* The nav becomes a panel that drops under the header. It used to be
-       display:none, which left phones with no navigation at all. */
-    nav {
+    .nav-toggle { display: inline-flex; }
+
+    .site-nav {
+        display: none;
         position: absolute;
         top: 100%;
         left: 0;
         right: 0;
         flex-direction: column;
         align-items: stretch;
-        gap: 2px;
-        padding: 10px 16px 16px;
-        /* Fully opaque, not 0.97: a navigation panel has nothing to gain from
-           showing the page underneath, and at 0.97 a bright headline still
-           ghosts through the blur. */
-        background: #080c16;
-        border-bottom: 1px solid rgba(59, 130, 246, 0.25);
-        border-radius: 0 0 20px 20px;
-        display: none;
-        max-height: calc(100vh - var(--header-h));
-        overflow-y: auto;
+        gap: 0;
+        padding: 10px 20px 18px;
+        background: rgba(10, 12, 18, 0.98);
+        border-bottom: 1px solid var(--border);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        z-index: 60;
     }
 
-    nav.open { display: flex; }
+    .site-nav.open { display: flex; }
 
-    /* The panel drops out of the header box; it needs its own layer so nothing
-       inside main can come up through it. */
-    nav { z-index: 1; }
-
-    nav a {
-        margin: 0;
-        padding: 14px 12px;
+    .site-nav a {
+        padding: 14px 4px;
         font-size: 16px;
-        border-radius: 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 
-    .menu-toggle { display: inline-flex; }
+    .lang-toggle { margin: 14px 0 0; align-self: flex-start; }
 
-    .lang-toggle { margin-left: 0; align-self: flex-start; margin-top: 8px; }
-
-    header { position: sticky; }
     .grid { grid-template-columns: 1fr; }
 }
 
@@ -654,3 +718,7 @@ footer a:hover { color: #ffffff; }
 .link-group { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
 
 .meta { display: flex; gap: 16px; flex-wrap: wrap; color: var(--muted); font-size: 14px; }
+
+/* A news entry with nowhere to go: same box, but it must not move under the
+   pointer. */
+.news-static { cursor: default; }

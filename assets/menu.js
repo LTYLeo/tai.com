@@ -5,8 +5,8 @@
     "use strict";
 
     function init() {
-        var toggle = document.querySelector(".menu-toggle");
-        var nav = document.querySelector("header nav");
+        var toggle = document.querySelector(".nav-toggle");
+        var nav = document.querySelector(".site-nav");
         if (!toggle || !nav) return;
 
         function close() {

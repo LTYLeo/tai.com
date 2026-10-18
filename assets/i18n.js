@@ -92,11 +92,14 @@
             btn.setAttribute("aria-pressed", isActive ? "true" : "false");
         });
 
-        /* Some copy is easier to swap wholesale than to key, e.g. the document
-           title, which has no element to hang an attribute on. */
-        if (window.TAI_I18N && window.TAI_I18N.titles) {
-            var t = window.TAI_I18N.titles[lang];
-            if (t) document.title = t;
+        /* The document title has no element to hang an attribute on, so it is
+           looked up by the page name on <body data-page>. Assigning the whole
+           titles[lang] table here instead put "[object Object]" in the tab,
+           which is exactly what an object coerced to a string looks like. */
+        var page = document.body && document.body.getAttribute("data-page");
+        if (page && window.TAI_I18N && window.TAI_I18N.titles) {
+            var table = window.TAI_I18N.titles[lang];
+            if (table && table[page]) document.title = table[page];
         }
     }
 
