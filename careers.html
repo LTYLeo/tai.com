@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Careers — TAI Research</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <meta name="description" content="TAI Research core team hiring: find the people building the next generation of intelligence." />
+    <meta name="theme-color" content="#0a0c12" />
+    <link rel="stylesheet" href="assets/site.css" />
+    <style>
+        .job { margin-bottom: 18px; }
+        .job h3 { margin: 0 0 10px; font-size: 17px; }
+        .job .part { margin: 0 0 8px; }
+        .job .part b { color: var(--text); }
+        .job ul { margin: 6px 0 0; padding-left: 20px; }
+        .job li { margin: 4px 0; line-height: 1.7; }
+        .role-tag {
+            display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 999px;
+            background: rgba(120,140,255,.14); color: #9fb0ff; margin-left: 8px;
+            vertical-align: middle; font-weight: 500;
+        }
+        .wild { border: 1px solid rgba(255,180,80,.35); }
+        .apply-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
+        .apply-card { flex: 1 1 220px; padding: 16px; border-radius: 12px;
+            background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); }
+        .apply-card .k { font-size: 12px; opacity: .6; margin-bottom: 6px; }
+        .apply-card .v { font-size: 14px; }
+    </style>
+</head>
+<body data-page="careers">
+
+<header class="container site-header">
+    <a class="logo" href="index.html">
+        <span class="mark"><img src="assets/logo.png" alt="TAI Research" /></span>
+        <span>
+            <span class="logo-name">TAI Research</span>
+            <small data-i18n="tagline">Building the Future of Intelligence</small>
+        </span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">☰</button>
+
+    <nav class="site-nav">
+        <a href="index.html" data-i18n="nav.home">Home</a>
+        <a href="products.html" data-i18n="nav.products">Products</a>
+        <a href="research.html" data-i18n="nav.research">Research</a>
+        <a href="news.html" data-i18n="nav.news">News</a>
+        <a href="leadership.html" data-i18n="nav.leadership">Leadership</a>
+        <a href="careers.html" aria-current="page" data-i18n="nav.careers">Careers</a>
+        <a href="index.html#support" data-i18n="nav.support">Support</a>
+    </nav>
+
+    <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang-btn="zh" aria-pressed="false">中文</button>
+    </div>
+</header>
+
+<main class="container">
+
+    <section style="border-bottom:none;padding-bottom:8px">
+        <a href="index.html" class="back-link" data-i18n="back">← Back</a>
+        <h1 data-i18n="careers.title">🚀 Core Team Hiring</h1>
+        <p class="lede" data-i18n="careers.sub">Find the people building the next generation of intelligence</p>
+    </section>
+
+    <section style="padding-top:8px">
+        <div class="card">
+            <h3 style="margin-bottom:10px" data-i18n="careers.who.title">Who we are</h3>
+            <p data-i18n="careers.who.body">TAI Research is an AI research team founded by high-school students and run to top-lab standards. We have no billion-dollar budget and no ten-thousand-GPU cluster. What we do have is sharp algorithmic intuition and a track record of running frontier architectures on a few dollars of cloud compute &mdash; including the long-video closed-loop generation and emotional-companion models we recently completed.</p>
+            <h3 style="margin:20px 0 10px" data-i18n="careers.real.title">The reality we work in</h3>
+            <p data-i18n="careers.real.body">Compute is limited and time is fragmented, so we need people with strong self-drive who can break a problem open on their own. If you would rather not be another tuning cog in a big company, if you want to help define an AI product's commercial loop from zero to one, or push the time limits of low-level intelligence, come join us.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2 data-i18n="careers.roles">💼 Open Roles</h2>
+        <p class="muted" style="margin-top:-6px;margin-bottom:18px" data-i18n="careers.roles.note">Full-time / part-time / remote-flexible</p>
+
+        <div class="card job">
+            <h3 data-i18n="careers.j0.title">AI Product & Full-Stack Engineer <span class="role-tag">AI Product &amp; Full-Stack</span></h3>
+            <p class="part"><b data-i18n="careers.resp">You will:</b> <span data-i18n="careers.j0.body">Own end-to-end development of TAI Teens across mobile and web: wire the model inference API, the billing system (payments / redeem codes) and the interface into one working loop.</span></p>
+            <p class="part"><b data-i18n="careers.want">We are looking for:</b></p>
+            <ul>
+                    <li data-i18n="careers.j0.p0">Fluent in at least one backend language (Python / Node.js) and a frontend framework (React / Vue)</li>
+                    <li data-i18n="careers.j0.p1">Have shipped a complete consumer product on your own</li>
+                    <li data-i18n="careers.j0.p2">Can stay calm and fix things fast when a server falls over or a payment callback fails</li>
+            </ul>
+        </div>
+        <div class="card job">
+            <h3 data-i18n="careers.j1.title">Alignment &amp; Data Strategy Researcher <span class="role-tag">Alignment &amp; Data</span></h3>
+            <p class="part"><b data-i18n="careers.resp">You will:</b> <span data-i18n="careers.j1.body">Design the high-quality dialogue data pipeline and lead SFT and LoRA finetuning. You own safety guardrails and persona alignment, and the long-context problems of logical idling and forgetting.</span></p>
+            <p class="part"><b data-i18n="careers.want">We are looking for:</b></p>
+            <ul>
+                    <li data-i18n="careers.j1.p0">Know the post-training stack (SFT / DPO / RLHF) and tools like HuggingFace / PEFT</li>
+                    <li data-i18n="careers.j1.p1">Extremely sensitive to data: can spot template collapse from a few hundred conversations</li>
+                    <li data-i18n="careers.j1.p2">Can script automated cleaning and synthetic data generation</li>
+            </ul>
+        </div>
+        <div class="card job">
+            <h3 data-i18n="careers.j2.title">AI Systems &amp; Inference Engineer <span class="role-tag">Systems &amp; Inference</span></h3>
+            <p class="part"><b data-i18n="careers.resp">You will:</b> <span data-i18n="careers.j2.body">Build and maintain our inference infrastructure. Quantise 4B-class models (INT8 / INT4), speed up inference (vLLM / llama.cpp / MLX), and find efficient ways to run on Mac and on-device.</span></p>
+            <p class="part"><b data-i18n="careers.want">We are looking for:</b></p>
+            <ul>
+                    <li data-i18n="careers.j2.p0">Understand computer architecture and the characteristics of GPU / Apple Silicon</li>
+                    <li data-i18n="careers.j2.p1">CUDA or Metal experience is a strong plus</li>
+                    <li data-i18n="careers.j2.p2">Have worked with elastic compute scheduling on a cloud platform</li>
+            </ul>
+        </div>
+        <div class="card job">
+            <h3 data-i18n="careers.j3.title">Multimodal Video / Audio Researcher <span class="role-tag">Multimodal Video / Audio</span></h3>
+            <p class="part"><b data-i18n="careers.resp">You will:</b> <span data-i18n="careers.j3.body">Explore the next generation of joint video and audio generation, and solve copy degeneration and closed-loop state explosion in long-horizon video.</span></p>
+            <p class="part"><b data-i18n="careers.want">We are looking for:</b></p>
+            <ul>
+                    <li data-i18n="careers.j3.p0">Deep understanding of diffusion models, autoregressive video generation and world models</li>
+                    <li data-i18n="careers.j3.p1">Comfortable with optical flow, event alignment and continuous state estimation</li>
+                    <li data-i18n="careers.j3.p2">Can validate architectural ideas with small synthetic datasets under tight compute</li>
+            </ul>
+        </div>
+        <div class="card job">
+            <h3 data-i18n="careers.j4.title">Post-Training Engineer <span class="role-tag">Post-Training</span></h3>
+            <p class="part"><b data-i18n="careers.resp">You will:</b> <span data-i18n="careers.j4.body">Squeeze maximum capability out of open bases like Qwen and Llama through extreme data refinement, and find the engineering path from 1B–4B models toward large-model quality.</span></p>
+            <p class="part"><b data-i18n="careers.want">We are looking for:</b></p>
+            <ul>
+                    <li data-i18n="careers.j4.p0">Deep knowledge of LoRA / QLoRA and hands-on fixes for catastrophic forgetting and overfitting</li>
+                    <li data-i18n="careers.j4.p1">Understand model limits and can tailor training to a target task (code, reasoning)</li>
+                    <li data-i18n="careers.j4.p2">Obsessive about compute cost: best convergence for the smallest experiment</li>
+            </ul>
+        </div>
+        <div class="card job">
+            <h3 data-i18n="careers.j5.title">Frontier Researcher <span class="role-tag">Frontier Research</span></h3>
+            <p class="part"><b data-i18n="careers.resp">You will:</b> <span data-i18n="careers.j5.body">Look past the current scaling laws for the next paradigm: continual learning, self-improving models, recurrent architectures, neuromorphic computing.</span></p>
+            <p class="part"><b data-i18n="careers.want">We are looking for:</b></p>
+            <ul>
+                    <li data-i18n="careers.j5.p0">Strong critical thinking and the nerve to question mainstream deep learning</li>
+                    <li data-i18n="careers.j5.p1">Solid grounding in mathematics, physics or cognitive science</li>
+                    <li data-i18n="careers.j5.p2">Willing to take big research risk and stay on hard problems for a long time</li>
+                    <li data-i18n="careers.j5.p3">If you have a self-built, ambitious, still-imperfect experimental project, that is exactly what we want</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2 data-i18n="careers.wild.title">🌟 The Wild Card</h2>
+        <div class="card wild">
+            <h3>The Wild Card</h3>
+            <p data-i18n="careers.wild.body">If none of the roles above can hold you, send us your GitHub, your technical blog, or anything else that proves your obsession with technology.</p>
+            <p class="muted" style="margin-top:10px" data-i18n="careers.wild.note">We do not care about your credentials. We care about your ambition for intelligence, and your resolve to solve problems nobody has solved.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2 data-i18n="careers.apply">📩 How to join</h2>
+        <div class="apply-row">
+            <div class="apply-card">
+                <div class="k" data-i18n="careers.apply.how">How to apply</div>
+                <div class="v"><a href="mailto:1637321445@qq.com">1637321445@qq.com</a></div>
+            </div>
+            <div class="apply-card">
+                <div class="k" data-i18n="careers.apply.where">Location</div>
+                <div class="v" data-i18n="careers.apply.where.v">Nanjing (partly remote / online)</div>
+            </div>
+            <div class="apply-card">
+                <div class="k" data-i18n="careers.apply.attach">What to send</div>
+                <div class="v" data-i18n="careers.apply.attach.v">CV (required) + portfolio / GitHub link (optional, but if you have one it is your strongest weapon)</div>
+            </div>
+        </div>
+
+        <!-- 直接投递：表单在开发者平台，提交后进后端 submissions 表 -->
+        <div class="card" style="margin-top:14px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:space-between">
+            <div>
+                <div style="font-weight:600;margin-bottom:4px" data-i18n="careers.form.title">Or apply through the form</div>
+                <div class="muted" style="font-size:13px" data-i18n="careers.form.note">The application form lives on the Developer Platform and goes straight to our backend.</div>
+            </div>
+            <a class="btn" href="https://ltyleo.github.io/platform/careers.html#apply"
+               target="_blank" rel="noopener" data-i18n="careers.form.btn">Open the application form →</a>
+        </div>
+    </section>
+>
+
+<footer class="container">
+    <div class="footer-inner">
+        <div>© TAI Research</div>
+        <div class="footer-links">
+            <a href="https://github.com/LTYLeo" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://huggingface.co/TAI-Research" target="_blank" rel="noopener">Hugging Face</a>
+            <a href="https://space.bilibili.com/88158150" target="_blank" rel="noopener">Bilibili</a>
+        </div>
+    </div>
+</footer>
+
+<script src="assets/locales.js"></script>
+<script src="assets/i18n.js"></script>
+<script src="assets/menu.js"></script>
+</body>
+</html>
